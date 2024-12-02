@@ -8,7 +8,10 @@ interface LoginResponse {
     refreshToken: string;
 }
 
-export const authApi = {
+export const authApi: {
+    login: (credentials: LoginFormValues) => Promise<LoginResponse>;
+    register: (credentials: RegisterFormValues) => Promise<LoginResponse>;
+} = {
     login: async (credentials: LoginFormValues) => {
         const { data } = await api.post<LoginResponse>("/login", credentials);
         return data;
