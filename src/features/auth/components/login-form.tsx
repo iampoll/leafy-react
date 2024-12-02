@@ -22,6 +22,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { toast } from "sonner";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
@@ -40,8 +41,10 @@ function LoginFormFields() {
     async function onSubmit(data: LoginFormValues) {
         try {
             await login.mutateAsync(data);
+
             navigate("/dashboard");
         } catch (error) {
+            toast.error("Invalid credentials.");
             console.log(error);
         }
     }

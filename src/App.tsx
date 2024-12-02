@@ -1,11 +1,14 @@
 import Routes from "@/routes";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
-  return (
-    <div className="App">
-      <Routes />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Toaster />
+
+            <Routes />
+        </div>
+    );
 }
 
 export default App;
