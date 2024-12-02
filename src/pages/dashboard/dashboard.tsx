@@ -1,26 +1,20 @@
-import useUser from "@/hooks/use-user";
-
-import { Button } from "@/components/ui/button";
+import LogoutButton from "@/features/auth/components/logout-button";
 import { useGetWallet } from "@/features/wallet/api/get-wallet";
 
 const Dashboard = () => {
-    const { handleLogout } = useUser();
     const { data, isLoading, isError, error } = useGetWallet();
 
     if (isLoading) {
         return <div>Loading wallet info...</div>;
     }
-
     if (isError) {
         return <div>Error: {error.message}</div>;
     }
 
-    console.log(data);
-
     return (
         <div>
             <p>Dashboard</p>
-            <Button onClick={handleLogout}>Logout</Button>
+            <LogoutButton />
             <p> Wallet balance: {data.balance}</p>
         </div>
     );
