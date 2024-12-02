@@ -16,7 +16,13 @@ const Onboarding = () => {
     };
 
     const handleCreateWallet = () => {
-        createWallet(balance);
+        try {
+            createWallet(balance);
+
+            window.location.reload();
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (
@@ -38,7 +44,7 @@ const Onboarding = () => {
                     iconPlacement="right"
                     className="w-full border-black border-2 font-bold h-12"
                     onClick={handleCreateWallet}
-                    disabled={isPending}
+                    disabled={isPending || balance === 0}
                 >
                     Set balance
                 </Button>
