@@ -1,21 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import Onboarding from "@/features/onboarding/components";
+import Dashboard from "./dashboard";
 
-import { Button } from "@/components/ui/button";
-
-const Dashboard = () => {
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/login");
-    };
-
-    return (
-        <div>
-            <p>Dashboard</p>
-            <Button onClick={handleLogout}>Logout</Button>
-        </div>
-    );
+const DashboardIndex = () => {
+    const isOnboarded = false;
+    return <div>{isOnboarded ? <Dashboard /> : <Onboarding />}</div>;
 };
 
-export default Dashboard;
+export default DashboardIndex;
