@@ -40,7 +40,7 @@ function LoginFormFields() {
     async function onSubmit(data: LoginFormValues) {
         try {
             await login.mutateAsync(data);
-            navigate("/");
+            navigate("/dashboard");
         } catch (error) {
             console.log(error);
         }
