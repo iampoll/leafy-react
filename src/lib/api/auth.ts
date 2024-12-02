@@ -1,5 +1,5 @@
 import { api } from "./client";
-import { LoginFormValues } from "@/features/auth/types";
+import { LoginFormValues, RegisterFormValues } from "@/features/auth/types";
 
 interface LoginResponse {
     tokenType: string;
@@ -11,6 +11,13 @@ interface LoginResponse {
 export const authApi = {
     login: async (credentials: LoginFormValues) => {
         const { data } = await api.post<LoginResponse>("/login", credentials);
+        return data;
+    },
+    register: async (credentials: RegisterFormValues) => {
+        const { data } = await api.post<LoginResponse>(
+            "/register",
+            credentials
+        );
         return data;
     },
 };
