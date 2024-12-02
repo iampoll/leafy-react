@@ -1,5 +1,7 @@
-import LogoutButton from "@/features/auth/components/logout-button";
+import { Button } from "@/components/ui/button";
+import { H1 } from "@/components/ui/typography";
 import { useGetWallet } from "@/features/wallet/api/get-wallet";
+import { Leaf } from "lucide-react";
 
 const Dashboard = () => {
     const { data, isLoading, isError, error } = useGetWallet();
@@ -12,10 +14,16 @@ const Dashboard = () => {
     }
 
     return (
-        <div>
-            <p>Dashboard</p>
-            <LogoutButton />
-            <p> Wallet balance: {data.balance}</p>
+        <div className="space-y-4">
+            <section className="flex gap-2 items-center">
+                <Leaf />
+                <H1>{data.balance}</H1>
+            </section>
+
+            <section className="flex gap-2">
+                <Button>Deposit</Button>
+                <Button variant="secondary">Expenses</Button>
+            </section>
         </div>
     );
 };
