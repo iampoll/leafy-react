@@ -19,6 +19,8 @@ const Onboarding = () => {
 
     const handleCreateWallet = () => {
         try {
+            console.log("balance", balance);
+
             createWallet(balance);
 
             refetchUser();
