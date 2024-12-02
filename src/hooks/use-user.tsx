@@ -1,5 +1,6 @@
 import { api } from "@/lib/api/client";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 interface User {
     id: string;
@@ -8,6 +9,9 @@ interface User {
 }
 
 const useUser = () => {
+    const queryClient = useQueryClient();
+    const navigate = useNavigate();
+
     const { data: user, isLoading } = useQuery<User>({
         queryKey: ["user"],
         queryFn: async () => {
@@ -16,7 +20,16 @@ const useUser = () => {
         },
     });
 
-    return { user, isLoading };
+    const refetchUser = () => {
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+    };
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    };
+
+    return { user, isLoading, refetchUser, handleLogout };
 };
 
 export default useUser;

@@ -1,14 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import useUser from "@/hooks/use-user";
 
 import { Button } from "@/components/ui/button";
 
 const Dashboard = () => {
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/login");
-    };
+    const { handleLogout } = useUser();
 
     return (
         <div>
