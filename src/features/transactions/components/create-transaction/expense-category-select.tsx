@@ -5,6 +5,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+import { useGetCategories } from "../../api/use-get-categories";
+
+type Category = {
+    id: string;
+    name: string;
+};
 
 export function ExpenseCategorySelect({
     category,
@@ -13,6 +19,29 @@ export function ExpenseCategorySelect({
     category: string;
     setCategory: (category: string) => void;
 }) {
+    const { data: categories, isLoading, isError, error } = useGetCategories();
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>{error?.message}</div>;
+
+    const emojis = [
+        "🏠",
+        "💧",
+        "🌐",
+        "🍽️",
+        "🍴",
+        "🚗",
+        "🛢️",
+        "📚",
+        "🎓",
+        "🏥",
+        "🧼",
+        "🧺",
+        "🎭",
+        "📺",
+        "💰",
+    ];
+
     return (
         <Select
             defaultValue={category}
@@ -23,27 +52,11 @@ export function ExpenseCategorySelect({
             </SelectTrigger>
 
             <SelectContent>
-                <SelectItem value="rent">🏠 Rent</SelectItem>
-                <SelectItem value="utilities">💧 Utilities</SelectItem>
-                <SelectItem value="internet">🌐 Internet</SelectItem>
-
-                <SelectItem value="groceries">🍽️ Groceries</SelectItem>
-                <SelectItem value="food">🍴 Food</SelectItem>
-
-                <SelectItem value="transport">🚗 Transportation</SelectItem>
-                <SelectItem value="fuel">🛢️ Fuel</SelectItem>
-
-                <SelectItem value="books">📚 Books & Supplies</SelectItem>
-                <SelectItem value="courses">🎓 Course Fees</SelectItem>
-
-                <SelectItem value="health">🏥 Healthcare</SelectItem>
-                <SelectItem value="personal">🧼 Personal Care</SelectItem>
-                <SelectItem value="laundry">🧺 Laundry</SelectItem>
-
-                <SelectItem value="entertainment">🎭 Entertainment</SelectItem>
-                <SelectItem value="subscriptions">📺 Subscriptions</SelectItem>
-
-                <SelectItem value="other">💰 Other</SelectItem>
+                {categories?.map((category: Category, index: number) => (
+                    <SelectItem value={category.id}>
+                        {emojis[index]} {category.name}
+                    </SelectItem>
+                ))}
             </SelectContent>
         </Select>
     );
