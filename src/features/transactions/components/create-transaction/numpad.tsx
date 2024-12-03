@@ -129,7 +129,7 @@ const Numpad = ({
                     <Button
                         className="w-full rounded-3xl h-full"
                         onClick={onSubmit}
-                        // disabled={transactionAmount === 0}
+                        disabled={transactionAmount === 0}
                     >
                         <Check />
                     </Button>

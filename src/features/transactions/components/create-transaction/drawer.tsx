@@ -7,10 +7,8 @@ import { Button } from "@/components/ui/button";
 import {
     Drawer,
     DrawerContent,
-    DrawerDescription,
     DrawerFooter,
     DrawerHeader,
-    DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import CreateTransactionButton from "./button";
@@ -18,13 +16,15 @@ import { useCreateTransaction } from "../../api/use-create-transaction";
 import { toast } from "sonner";
 import { useWallet } from "@/features/wallet/contexts/use-wallet";
 import Numpad from "./numpad";
+import { TransactionTypeSelect } from "./type-select";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
     const { refetchWallet } = useWallet();
 
-    const [transactionAmount, setTransactionAmount] = React.useState(0.5);
+    const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isOpen, setIsOpen] = React.useState(false);
+    const [isExpense, setIsExpense] = React.useState(true);
 
     function onClick(adjustment: number) {
         setTransactionAmount(
@@ -34,7 +34,7 @@ export function CreateTransactionDrawer() {
 
     function onSubmit() {
         createTransaction(
-            { isExpense: true, amount: transactionAmount },
+            { isExpense: isExpense, amount: transactionAmount },
             {
                 onSuccess: () => {
                     toast.success("Transaction created successfully");
@@ -54,10 +54,10 @@ export function CreateTransactionDrawer() {
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
                     <DrawerHeader>
-                        <DrawerTitle>Move Goal</DrawerTitle>
-                        <DrawerDescription>
-                            Set your daily activity tran.
-                        </DrawerDescription>
+                        <TransactionTypeSelect
+                            isExpense={isExpense}
+                            setIsExpense={setIsExpense}
+                        />
                     </DrawerHeader>
                     <div className="p-4 pb-0">
                         <div className="flex items-center justify-center space-x-2">
