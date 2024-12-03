@@ -9,6 +9,7 @@ import {
     DrawerContent,
     DrawerFooter,
     DrawerHeader,
+    DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import CreateTransactionButton from "./button";
@@ -63,6 +64,8 @@ export function CreateTransactionDrawer() {
 
     return (
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <DrawerTitle></DrawerTitle>
+
             <DrawerTrigger className="w-full">
                 <CreateTransactionButton />
             </DrawerTrigger>

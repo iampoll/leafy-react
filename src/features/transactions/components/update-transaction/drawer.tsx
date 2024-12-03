@@ -9,6 +9,7 @@ import {
     DrawerContent,
     DrawerFooter,
     DrawerHeader,
+    DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import { toast } from "sonner";
@@ -68,6 +69,7 @@ export function UpdateTransactionDrawer({
 
     return (
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
+            <DrawerTitle></DrawerTitle>
             <DrawerTrigger className="w-full">{children}</DrawerTrigger>
 
             <DrawerContent>
