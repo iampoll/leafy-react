@@ -27,7 +27,10 @@ export function ExpenseCategorySelect({
     if (!categories) return <div>No categories found</div>;
 
     return (
-        <Select value={category} onValueChange={(value) => setCategory(value)}>
+        <Select
+            defaultValue={category}
+            onValueChange={(value) => setCategory(value)}
+        >
             <SelectTrigger className="rounded-full py-6 px-6">
                 <SelectValue placeholder="Select category" />
             </SelectTrigger>

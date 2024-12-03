@@ -41,8 +41,6 @@ export function ActionsDropdown({
         );
     }
 
-    console.log("transaction", transaction);
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
