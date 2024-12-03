@@ -6,6 +6,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useGetCategories } from "../../api/use-get-categories";
+import { emojisWithBackground } from "@/config";
 
 type Category = {
     id: string;
@@ -24,24 +25,6 @@ export function ExpenseCategorySelect({
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>{error?.message}</div>;
 
-    const emojis = [
-        "🏠",
-        "💧",
-        "🌐",
-        "🍽️",
-        "🍴",
-        "🚗",
-        "🛢️",
-        "📚",
-        "🎓",
-        "🏥",
-        "🧼",
-        "🧺",
-        "🎭",
-        "📺",
-        "💰",
-    ];
-
     return (
         <Select
             defaultValue={category}
@@ -54,7 +37,7 @@ export function ExpenseCategorySelect({
             <SelectContent>
                 {categories?.map((category: Category, index: number) => (
                     <SelectItem value={category.id}>
-                        {emojis[index]} {category.name}
+                        {emojisWithBackground[index].emoji} {category.name}
                     </SelectItem>
                 ))}
             </SelectContent>

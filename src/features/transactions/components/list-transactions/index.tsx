@@ -15,7 +15,7 @@ const TransactionCards = () => {
     );
 
     return (
-        <div className="space-y-3 mt-6">
+        <div className="space-y-3 py-8 ">
             {sortedTransactionsByDate.map((transaction: Transaction) => (
                 <TransactionCard
                     key={transaction.id}

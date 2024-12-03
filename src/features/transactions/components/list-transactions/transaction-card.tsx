@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { Transaction } from "./types";
 import { Leaf } from "lucide-react";
+import { emojisWithBackground } from "@/config";
 
 type TransactionCardProps = {
     transaction: Transaction;
@@ -11,24 +12,6 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
     const amountColor = transaction.isExpense
         ? "text-red-600"
         : "text-green-600";
-
-    const emojisWithBackground = [
-        { emoji: "🏠", backgroundColor: "bg-red-200" },
-        { emoji: "💧", backgroundColor: "bg-blue-200" },
-        { emoji: "🌐", backgroundColor: "bg-green-200" },
-        { emoji: "🍽️", backgroundColor: "bg-purple-200" },
-        { emoji: "🍴", backgroundColor: "bg-purple-200" },
-        { emoji: "🚗", backgroundColor: "bg-orange-200" },
-        { emoji: "🛢️", backgroundColor: "bg-pink-200" },
-        { emoji: "📚", backgroundColor: "bg-purple-200" },
-        { emoji: "🎓", backgroundColor: "bg-purple-200" },
-        { emoji: "🏥", backgroundColor: "bg-pink-200" },
-        { emoji: "🧼", backgroundColor: "bg-orange-200" },
-        { emoji: "🧺", backgroundColor: "bg-green-200" },
-        { emoji: "🎭", backgroundColor: "bg-yellow-200" },
-        { emoji: "📺", backgroundColor: "bg-blue-200" },
-        { emoji: "💰", backgroundColor: "bg-red-200" },
-    ];
 
     return (
         <section className="flex justify-between items-center py-2">
