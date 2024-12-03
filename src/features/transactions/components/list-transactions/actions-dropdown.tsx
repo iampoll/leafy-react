@@ -5,7 +5,6 @@ import * as React from "react";
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
@@ -14,6 +13,9 @@ import { Transaction } from "./types";
 import { useDeleteTransaction } from "../../api/use-delete-transaction";
 import { useTransactions } from "../../contexts/use-transactions";
 import { toast } from "sonner";
+import { useWallet } from "@/features/wallet/contexts/use-wallet";
+import { UpdateTransactionDrawer } from "../update-transaction/drawer";
+import { Button } from "@/components/ui/button";
 
 export function ActionsDropdown({
     children,
@@ -24,6 +26,7 @@ export function ActionsDropdown({
 }) {
     const { mutate: deleteTransaction } = useDeleteTransaction();
     const { refetchTransactions } = useTransactions();
+    const { refetchWallet } = useWallet();
 
     function handleDeleteTransaction() {
         deleteTransaction(
@@ -32,10 +35,13 @@ export function ActionsDropdown({
                 onSuccess: () => {
                     toast.success("Transaction deleted successfully");
                     refetchTransactions();
+                    refetchWallet();
                 },
             }
         );
     }
+
+    console.log("transaction", transaction);
 
     return (
         <DropdownMenu>
@@ -43,10 +49,20 @@ export function ActionsDropdown({
             <DropdownMenuContent className="">
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>📝 Edit</DropdownMenuItem>
-                <DropdownMenuItem onClick={handleDeleteTransaction}>
+
+                <UpdateTransactionDrawer transaction={transaction}>
+                    <Button variant="ghost" className="w-full justify-start">
+                        📝 Edit
+                    </Button>
+                </UpdateTransactionDrawer>
+
+                <Button
+                    variant="ghost"
+                    className="w-full justify-start"
+                    onClick={handleDeleteTransaction}
+                >
                     ❌ Delete
-                </DropdownMenuItem>
+                </Button>
             </DropdownMenuContent>
         </DropdownMenu>
     );

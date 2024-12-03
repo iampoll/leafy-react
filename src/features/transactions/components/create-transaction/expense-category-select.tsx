@@ -36,7 +36,7 @@ export function ExpenseCategorySelect({
 
             <SelectContent>
                 {categories?.map((category: Category, index: number) => (
-                    <SelectItem value={category.id}>
+                    <SelectItem value={category.id} key={category.id}>
                         {emojisWithBackground[index].emoji} {category.name}
                     </SelectItem>
                 ))}
