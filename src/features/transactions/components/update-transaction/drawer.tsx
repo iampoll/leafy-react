@@ -44,8 +44,6 @@ export function UpdateTransactionDrawer({
         );
     }
 
-    console.log("selected transaction", transaction);
-
     function onSubmit() {
         updateTransaction(
             {
@@ -60,7 +58,6 @@ export function UpdateTransactionDrawer({
                     refetchWallet();
                     refetchTransactions();
                     setIsOpen(false);
-                    setTransactionAmount(0);
                 },
                 onError: () => {
                     toast.error("Please select a category");

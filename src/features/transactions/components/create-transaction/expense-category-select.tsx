@@ -24,12 +24,10 @@ export function ExpenseCategorySelect({
 
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>{error?.message}</div>;
+    if (!categories) return <div>No categories found</div>;
 
     return (
-        <Select
-            defaultValue={category}
-            onValueChange={(value) => setCategory(value)}
-        >
+        <Select value={category} onValueChange={(value) => setCategory(value)}>
             <SelectTrigger className="rounded-full py-6 px-6">
                 <SelectValue placeholder="Select category" />
             </SelectTrigger>
