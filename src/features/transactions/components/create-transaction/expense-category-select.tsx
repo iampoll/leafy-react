@@ -19,7 +19,7 @@ export function ExpenseCategorySelect({
             onValueChange={(value) => setCategory(value)}
         >
             <SelectTrigger className="rounded-full py-6 px-6">
-                <SelectValue placeholder="Select a category" />
+                <SelectValue placeholder="Select category" />
             </SelectTrigger>
 
             <SelectContent>
