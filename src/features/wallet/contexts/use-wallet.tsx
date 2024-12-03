@@ -4,7 +4,6 @@ import { useGetWallet } from "../api/use-get-wallet";
 interface WalletContextType {
     wallet: {
         balance: number;
-        // Add other wallet properties if needed
     } | null;
     isLoading: boolean;
     isError: boolean;

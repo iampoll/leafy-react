@@ -6,8 +6,8 @@ import OnboardingLayout from "@/layouts/onboarding";
 import NumberInput from "@/components/number-input";
 import { useState } from "react";
 import { useCreateWallet } from "@/features/wallet/api/use-create-wallet";
-import useUser from "@/hooks/use-user";
 import { useWallet } from "@/features/wallet/contexts/use-wallet";
+import { useUser } from "@/hooks/use-user";
 
 const Onboarding = () => {
     const [balance, setBalance] = useState(0);
@@ -35,11 +35,6 @@ const Onboarding = () => {
         <OnboardingLayout>
             <div className="space-y-4">
                 <H1>Set your initial balance</H1>
-                {/* <Input
-                    type="number"
-                    className="w-full border-black border-2 font-bold h-12"
-                    placeholder="1000"
-                /> */}
 
                 <NumberInput onValueChange={handleSetBalance} />
 

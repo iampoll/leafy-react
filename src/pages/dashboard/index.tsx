@@ -1,6 +1,6 @@
 import Onboarding from "@/features/onboarding/components";
 import Dashboard from "./dashboard";
-import useUser from "@/hooks/use-user";
+import { useUser } from "@/hooks/use-user";
 import DashboardLayout from "./layout";
 
 const DashboardIndex = () => {

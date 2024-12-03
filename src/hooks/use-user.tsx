@@ -1,6 +1,6 @@
+import { createContext, useContext, ReactNode } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
 
 interface User {
     id: string;
@@ -8,11 +8,24 @@ interface User {
     isOnboarded: boolean;
 }
 
-const useUser = () => {
-    const queryClient = useQueryClient();
-    const navigate = useNavigate();
+interface UserContextType {
+    user: User | null;
+    isLoading: boolean;
+    isError: boolean;
+    error: Error | null;
+    refetchUser: () => Promise<void>;
+}
 
-    const { data: user, isLoading } = useQuery<User>({
+const UserContext = createContext<UserContextType | undefined>(undefined);
+
+export function UserProvider({ children }: { children: ReactNode }) {
+    const {
+        data: user,
+        isLoading,
+        isError,
+        error,
+        refetch,
+    } = useQuery({
         queryKey: ["user"],
         queryFn: async () => {
             const { data } = await api.get("/api/manage/info");
@@ -20,16 +33,29 @@ const useUser = () => {
         },
     });
 
-    const refetchUser = () => {
-        queryClient.invalidateQueries({ queryKey: ["user"] });
+    const refetchUser = async () => {
+        await refetch();
     };
 
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        navigate("/login");
-    };
+    return (
+        <UserContext.Provider
+            value={{
+                user,
+                isLoading,
+                isError,
+                error: error as Error | null,
+                refetchUser,
+            }}
+        >
+            {children}
+        </UserContext.Provider>
+    );
+}
 
-    return { user, isLoading, refetchUser, handleLogout };
-};
-
-export default useUser;
+export function useUser() {
+    const context = useContext(UserContext);
+    if (context === undefined) {
+        throw new Error("useUser must be used within a UserProvider");
+    }
+    return context;
+}

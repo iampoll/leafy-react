@@ -1,16 +1,26 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { UserProvider, useUser } from "@/hooks/use-user";
 
-interface ProtectedRouteProps {
-    children: React.ReactNode;
-}
+const ProtectedRouteContent = () => {
+    const { user, isLoading } = useUser();
 
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
-    const location = useLocation();
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-        return <Navigate to="/login" state={{ from: location }} replace />;
+    if (isLoading) {
+        return <div>Loading...</div>;
     }
 
-    return <>{children}</>;
-}
+    if (!user) {
+        return <Navigate to="/login" />;
+    }
+
+    return <Outlet />;
+};
+
+const ProtectedRoute = () => {
+    return (
+        <UserProvider>
+            <ProtectedRouteContent />
+        </UserProvider>
+    );
+};
+
+export default ProtectedRoute;
