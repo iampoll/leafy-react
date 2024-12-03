@@ -16,7 +16,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
         : "text-green-600";
 
     return (
-        <section className="flex justify-between items-center py-2 bg-muted pr-4 pl-2 rounded-l-full">
+        <section className="flex justify-between items-center py-2 border border-border pr-2 pl-2 rounded-l-full">
             <div className="flex gap-2 items-center">
                 {transaction.isExpense && (
                     <div
@@ -53,7 +53,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
 
                 {transaction.amount}
                 <ActionsDropdown>
-                    <Button variant="ghost" size="icon">
+                    <Button variant="outline" size="icon">
                         <EllipsisVertical className="size-4 text-foreground" />
                     </Button>
                 </ActionsDropdown>
