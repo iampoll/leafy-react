@@ -36,6 +36,7 @@ export function UpdateTransactionDrawer({
     );
     const [isExpense, setIsExpense] = React.useState(transaction.isExpense);
     const [category, setCategory] = React.useState(transaction.category);
+    const [isOpen, setIsOpen] = React.useState(false);
 
     function onClick(adjustment: number) {
         setTransactionAmount(
@@ -58,6 +59,7 @@ export function UpdateTransactionDrawer({
                     toast.success("Transaction created successfully");
                     refetchWallet();
                     refetchTransactions();
+                    setIsOpen(false);
                     setTransactionAmount(0);
                 },
                 onError: () => {
@@ -68,7 +70,7 @@ export function UpdateTransactionDrawer({
     }
 
     return (
-        <Drawer>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger className="w-full">{children}</DrawerTrigger>
 
             <DrawerContent>
@@ -81,7 +83,7 @@ export function UpdateTransactionDrawer({
 
                         {isExpense && (
                             <ExpenseCategorySelect
-                                category={category}
+                                category={category.toString()}
                                 setCategory={(value) =>
                                     setCategory(Number(value))
                                 }

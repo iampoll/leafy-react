@@ -11,10 +11,11 @@ interface UpdateTransactionParams {
 export function useUpdateTransaction() {
     return useMutation({
         mutationFn: async (params: UpdateTransactionParams) => {
-            const response = await api.put(
-                `/api/transactions/${params.id}`,
-                params
-            );
+            const response = await api.patch(`/api/transactions/${params.id}`, {
+                isExpense: params.isExpense,
+                amount: params.amount,
+                category: Number(params.category),
+            });
             return response.data;
         },
     });
