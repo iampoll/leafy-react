@@ -1,6 +1,7 @@
 import { createContext, useContext, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
+import { useNavigate } from "react-router-dom";
 
 interface User {
     id: string;
@@ -14,11 +15,13 @@ interface UserContextType {
     isError: boolean;
     error: Error | null;
     refetchUser: () => Promise<void>;
+    handleLogout: () => Promise<void>;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+    const navigate = useNavigate();
     const {
         data: user,
         isLoading,
@@ -37,6 +40,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
         await refetch();
     };
 
+    const handleLogout = async () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    };
+
     return (
         <UserContext.Provider
             value={{
@@ -45,6 +53,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
                 isError,
                 error: error as Error | null,
                 refetchUser,
+                handleLogout,
             }}
         >
             {children}
