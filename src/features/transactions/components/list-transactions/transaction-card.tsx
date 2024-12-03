@@ -52,7 +52,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
                 <Leaf className="size-2" />
 
                 {transaction.amount}
-                <ActionsDropdown>
+                <ActionsDropdown transaction={transaction}>
                     <Button variant="outline" size="icon">
                         <EllipsisVertical className="size-4 text-foreground" />
                     </Button>
