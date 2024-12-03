@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { H1 } from "@/components/ui/typography";
-import { useGetWallet } from "@/features/wallet/api/get-wallet";
+import { useGetWallet } from "@/features/wallet/api/use-get-wallet";
 import { Leaf } from "lucide-react";
 
 const Dashboard = () => {

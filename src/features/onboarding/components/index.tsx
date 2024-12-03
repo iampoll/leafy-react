@@ -5,7 +5,7 @@ import { H1 } from "@/components/ui/typography";
 import OnboardingLayout from "@/layouts/onboarding";
 import NumberInput from "@/components/number-input";
 import { useState } from "react";
-import { useCreateWallet } from "@/features/wallet/api/create-wallet";
+import { useCreateWallet } from "@/features/wallet/api/use-create-wallet";
 import useUser from "@/hooks/use-user";
 
 const Onboarding = () => {
@@ -19,8 +19,6 @@ const Onboarding = () => {
 
     const handleCreateWallet = () => {
         try {
-            console.log("balance", balance);
-
             createWallet(balance);
 
             refetchUser();
