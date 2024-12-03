@@ -1,23 +1,26 @@
 import { Button } from "@/components/ui/button";
 import { H1 } from "@/components/ui/typography";
-import { useGetWallet } from "@/features/wallet/api/use-get-wallet";
+import { useWallet } from "@/features/wallet/contexts/use-wallet";
 import { Leaf } from "lucide-react";
 
 const Dashboard = () => {
-    const { data, isLoading, isError, error } = useGetWallet();
+    const { wallet, isLoading, isError, error } = useWallet();
 
     if (isLoading) {
         return <div>Loading wallet info...</div>;
     }
     if (isError) {
-        return <div>Error: {error.message}</div>;
+        return <div>Error: {error?.message}</div>;
+    }
+    if (!wallet) {
+        return <div>No wallet found</div>;
     }
 
     return (
         <div className="space-y-4">
             <section className="flex gap-2 items-center">
                 <Leaf />
-                <H1>{data.balance}</H1>
+                <H1>{wallet.balance}</H1>
             </section>
 
             <section className="flex gap-2">

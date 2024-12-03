@@ -7,11 +7,13 @@ import NumberInput from "@/components/number-input";
 import { useState } from "react";
 import { useCreateWallet } from "@/features/wallet/api/use-create-wallet";
 import useUser from "@/hooks/use-user";
+import { useWallet } from "@/features/wallet/contexts/use-wallet";
 
 const Onboarding = () => {
     const [balance, setBalance] = useState(0);
     const { mutate: createWallet, isPending } = useCreateWallet();
     const { refetchUser } = useUser();
+    const { refetchWallet } = useWallet();
 
     const handleSetBalance = (value: number) => {
         setBalance(value);
@@ -19,9 +21,11 @@ const Onboarding = () => {
 
     const handleCreateWallet = () => {
         try {
-            createWallet(balance);
-
-            refetchUser();
+            createWallet(balance, {
+                onSuccess: async () => {
+                    await Promise.all([refetchUser(), refetchWallet()]);
+                },
+            });
         } catch (error) {
             console.error(error);
         }
