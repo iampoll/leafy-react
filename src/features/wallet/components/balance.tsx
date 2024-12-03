@@ -17,9 +17,9 @@ const Balance = () => {
     }
 
     return (
-        <section className="flex gap-2 items-center">
+        <section className="flex gap-2 items-center justify-center">
             <Leaf />
-            <H1>{wallet.balance}</H1>
+            <H1>{wallet.balance.toString()}</H1>
         </section>
     );
 };

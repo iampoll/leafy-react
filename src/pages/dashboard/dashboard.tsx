@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import LogoutButton from "@/features/auth/components/logout-button";
 
 import Balance from "@/features/wallet/components/balance";
 
@@ -12,8 +11,6 @@ const Dashboard = () => {
                 <Button>Deposit</Button>
                 <Button variant="secondary">Expenses</Button>
             </section>
-
-            <LogoutButton />
         </div>
     );
 };

@@ -1,12 +1,16 @@
-import { Menu } from "lucide-react";
+import LogoutButton from "@/features/auth/components/logout-button";
+// import { Menu } from "lucide-react";
 
 const Topbar = () => {
     return (
         <header>
             <div className="flex items-center justify-between gap-2">
-                <span>Leafy</span>
+                <span className="font-bold uppercase tracking-tighter">
+                    Leafy
+                </span>
 
-                <Menu />
+                {/* <Menu /> */}
+                <LogoutButton />
             </div>
         </header>
     );
