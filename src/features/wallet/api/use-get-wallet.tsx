@@ -5,7 +5,7 @@ export function useGetWallet() {
     return useQuery({
         queryKey: ["wallet"],
         queryFn: async () => {
-            const { data } = await api.get("/api/wallet");
+            const { data } = await api.get("/api/wallets");
             return data;
         },
     });
