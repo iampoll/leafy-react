@@ -4,6 +4,7 @@ import { api } from "@/lib/api/client";
 interface CreateTransactionParams {
     isExpense: boolean;
     amount: number;
+    category: string;
 }
 
 export function useCreateTransaction() {

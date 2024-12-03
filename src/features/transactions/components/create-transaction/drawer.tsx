@@ -23,8 +23,9 @@ export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
     const { refetchWallet } = useWallet();
 
-    const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isOpen, setIsOpen] = React.useState(false);
+
+    const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isExpense, setIsExpense] = React.useState(true);
     const [category, setCategory] = React.useState("");
 
@@ -36,7 +37,11 @@ export function CreateTransactionDrawer() {
 
     function onSubmit() {
         createTransaction(
-            { isExpense: isExpense, amount: transactionAmount },
+            {
+                isExpense: isExpense,
+                amount: transactionAmount,
+                category: category,
+            },
             {
                 onSuccess: () => {
                     toast.success("Transaction created successfully");
