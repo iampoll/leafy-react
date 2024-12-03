@@ -6,7 +6,6 @@ import { Minus, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
     DrawerDescription,
     DrawerFooter,
@@ -18,12 +17,13 @@ import CreateTransactionButton from "./button";
 import { useCreateTransaction } from "../../api/use-create-transaction";
 import { toast } from "sonner";
 import { useWallet } from "@/features/wallet/contexts/use-wallet";
+import Numpad from "./numpad";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
     const { refetchWallet } = useWallet();
 
-    const [transactionAmount, setTransactionAmount] = React.useState(0);
+    const [transactionAmount, setTransactionAmount] = React.useState(0.5);
     const [isOpen, setIsOpen] = React.useState(false);
 
     function onClick(adjustment: number) {
@@ -34,7 +34,7 @@ export function CreateTransactionDrawer() {
 
     function onSubmit() {
         createTransaction(
-            { isExpense: false, amount: transactionAmount },
+            { isExpense: true, amount: transactionAmount },
             {
                 onSuccess: () => {
                     toast.success("Transaction created successfully");
@@ -91,17 +91,13 @@ export function CreateTransactionDrawer() {
                             </Button>
                         </div>
                     </div>
-                    <DrawerFooter>
-                        <Button
-                            onClick={onSubmit}
-                            disabled={transactionAmount === 0}
-                        >
-                            Submit
-                        </Button>
-                        <DrawerClose asChild>
-                            <Button variant="outline">Cancel</Button>
-                        </DrawerClose>
-                    </DrawerFooter>
+
+                    <Numpad
+                        transactionAmount={transactionAmount}
+                        onSubmit={onSubmit}
+                        setTransactionAmount={setTransactionAmount}
+                    />
+                    <DrawerFooter></DrawerFooter>
                 </div>
             </DrawerContent>
         </Drawer>
