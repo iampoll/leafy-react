@@ -49,6 +49,9 @@ export function CreateTransactionDrawer() {
                     setIsOpen(false);
                     setTransactionAmount(0);
                 },
+                onError: () => {
+                    toast.error("Please select a category");
+                },
             }
         );
     }
