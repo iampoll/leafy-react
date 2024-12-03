@@ -15,16 +15,39 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import CreateTransactionButton from "./button";
+import { useCreateTransaction } from "../../api/use-create-transaction";
+import { toast } from "sonner";
+import { useWallet } from "@/features/wallet/contexts/use-wallet";
 
 export function CreateTransactionDrawer() {
-    const [goal, setGoal] = React.useState(350);
+    const { mutate: createTransaction } = useCreateTransaction();
+    const { refetchWallet } = useWallet();
+
+    const [transactionAmount, setTransactionAmount] = React.useState(0);
+    const [isOpen, setIsOpen] = React.useState(false);
 
     function onClick(adjustment: number) {
-        setGoal(Math.max(200, Math.min(400, goal + adjustment)));
+        setTransactionAmount(
+            Math.max(0, Math.min(10000, transactionAmount + adjustment))
+        );
+    }
+
+    function onSubmit() {
+        createTransaction(
+            { isExpense: false, amount: transactionAmount },
+            {
+                onSuccess: () => {
+                    toast.success("Transaction created successfully");
+                    refetchWallet();
+                    setIsOpen(false);
+                    setTransactionAmount(0);
+                },
+            }
+        );
     }
 
     return (
-        <Drawer>
+        <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTrigger className="w-full">
                 <CreateTransactionButton />
             </DrawerTrigger>
@@ -33,7 +56,7 @@ export function CreateTransactionDrawer() {
                     <DrawerHeader>
                         <DrawerTitle>Move Goal</DrawerTitle>
                         <DrawerDescription>
-                            Set your daily activity goal.
+                            Set your daily activity tran.
                         </DrawerDescription>
                     </DrawerHeader>
                     <div className="p-4 pb-0">
@@ -43,14 +66,14 @@ export function CreateTransactionDrawer() {
                                 size="icon"
                                 className="h-8 w-8 shrink-0 rounded-full"
                                 onClick={() => onClick(-10)}
-                                disabled={goal <= 200}
+                                disabled={transactionAmount <= 0}
                             >
                                 <Minus />
                                 <span className="sr-only">Decrease</span>
                             </Button>
                             <div className="flex-1 text-center">
                                 <div className="text-7xl font-bold tracking-tighter">
-                                    {goal}
+                                    {transactionAmount}
                                 </div>
                                 <div className="text-[0.70rem] uppercase text-muted-foreground">
                                     Leaves
@@ -61,7 +84,7 @@ export function CreateTransactionDrawer() {
                                 size="icon"
                                 className="h-8 w-8 shrink-0 rounded-full"
                                 onClick={() => onClick(10)}
-                                disabled={goal >= 400}
+                                disabled={transactionAmount >= 10000}
                             >
                                 <Plus />
                                 <span className="sr-only">Increase</span>
@@ -69,7 +92,12 @@ export function CreateTransactionDrawer() {
                         </div>
                     </div>
                     <DrawerFooter>
-                        <Button>Submit</Button>
+                        <Button
+                            onClick={onSubmit}
+                            disabled={transactionAmount === 0}
+                        >
+                            Submit
+                        </Button>
                         <DrawerClose asChild>
                             <Button variant="outline">Cancel</Button>
                         </DrawerClose>
