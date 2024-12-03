@@ -16,16 +16,29 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
     return (
         <section className="flex justify-between items-center py-2">
             <div className="flex gap-2 items-center">
-                <div
-                    className={`size-10 rounded-full flex items-center justify-center ${
-                        emojisWithBackground[transaction.category]
-                            .backgroundColor
-                    }`}
-                >
-                    {emojisWithBackground[transaction.category - 1].emoji}
-                </div>
+                {transaction.isExpense && (
+                    <div
+                        className={`size-10 rounded-full flex items-center justify-center ${
+                            emojisWithBackground[transaction.category]
+                                .backgroundColor
+                        }`}
+                    >
+                        {emojisWithBackground[transaction.category - 1].emoji}
+                    </div>
+                )}
+
+                {!transaction.isExpense && (
+                    <div className="size-10 rounded-full flex items-center justify-center bg-green-200">
+                        💰
+                    </div>
+                )}
+
                 <div>
-                    <h3 className="font-medium ">{transaction.categoryName}</h3>
+                    <h3 className="font-medium ">
+                        {transaction.isExpense
+                            ? transaction.categoryName
+                            : "Income"}
+                    </h3>
                     <p className="text-sm text-muted-foreground">
                         {formattedDate}
                     </p>
