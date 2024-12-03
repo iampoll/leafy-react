@@ -1,16 +1,12 @@
-import { Button } from "@/components/ui/button";
-
 import Balance from "@/features/wallet/components/balance";
+import { CreateTransactionDrawer } from "@/features/transactions/components/create-transaction/drawer";
 
 const Dashboard = () => {
     return (
         <div className="space-y-4">
             <Balance />
 
-            <section className="flex gap-2">
-                <Button>Deposit</Button>
-                <Button variant="secondary">Expenses</Button>
-            </section>
+            <CreateTransactionDrawer />
         </div>
     );
 };
