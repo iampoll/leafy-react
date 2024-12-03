@@ -1,9 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
-
-interface DeleteTransactionParams {
-    id: number;
-}
+import { DeleteTransactionParams } from "../types";
 
 export function useDeleteTransaction() {
     return useMutation({

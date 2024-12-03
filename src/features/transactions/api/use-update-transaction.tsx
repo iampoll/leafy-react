@@ -1,12 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
-
-interface UpdateTransactionParams {
-    id: number;
-    isExpense: boolean;
-    amount: number;
-    category: string;
-}
+import { UpdateTransactionParams } from "../types";
 
 export function useUpdateTransaction() {
     return useMutation({

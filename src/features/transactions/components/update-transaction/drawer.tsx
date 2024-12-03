@@ -55,7 +55,7 @@ export function UpdateTransactionDrawer({
             },
             {
                 onSuccess: () => {
-                    toast.success("Transaction created successfully");
+                    toast.success("Transaction updated successfully");
                     refetchWallet();
                     refetchTransactions();
                     setIsOpen(false);

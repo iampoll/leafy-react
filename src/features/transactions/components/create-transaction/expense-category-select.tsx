@@ -7,11 +7,7 @@ import {
 } from "@/components/ui/select";
 import { useGetCategories } from "../../api/use-get-categories";
 import { emojisWithBackground } from "@/config";
-
-type Category = {
-    id: string;
-    name: string;
-};
+import { Category } from "../../types";
 
 export function ExpenseCategorySelect({
     category,
