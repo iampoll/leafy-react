@@ -18,9 +18,11 @@ import { useWallet } from "@/features/wallet/contexts/use-wallet";
 import Numpad from "./numpad";
 import { TransactionTypeSelect } from "./type-select";
 import { ExpenseCategorySelect } from "./expense-category-select";
+import { useTransactions } from "../../contexts/use-transactions";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
+    const { refetchTransactions } = useTransactions();
     const { refetchWallet } = useWallet();
 
     const [isOpen, setIsOpen] = React.useState(false);
@@ -40,12 +42,15 @@ export function CreateTransactionDrawer() {
             {
                 isExpense: isExpense,
                 amount: transactionAmount,
+                // if isExpense is false, i want to set the category to 0
+                // category: isExpense ? category : "0",
                 category: category,
             },
             {
                 onSuccess: () => {
                     toast.success("Transaction created successfully");
                     refetchWallet();
+                    refetchTransactions();
                     setIsOpen(false);
                     setTransactionAmount(0);
                 },

@@ -1,9 +1,9 @@
-import { useGetTransactions } from "../../api/use-get-transactions";
+import { useTransactions } from "../../contexts/use-transactions";
 import TransactionCard from "./transaction-card";
 import { Transaction } from "./types";
 
 const TransactionCards = () => {
-    const { data: transactions, isLoading, error } = useGetTransactions();
+    const { transactions, isLoading, error } = useTransactions();
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
