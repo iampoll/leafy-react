@@ -17,6 +17,7 @@ import { toast } from "sonner";
 import { useWallet } from "@/features/wallet/contexts/use-wallet";
 import Numpad from "./numpad";
 import { TransactionTypeSelect } from "./type-select";
+import { ExpenseCategorySelect } from "./expense-category-select";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
@@ -25,6 +26,7 @@ export function CreateTransactionDrawer() {
     const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isOpen, setIsOpen] = React.useState(false);
     const [isExpense, setIsExpense] = React.useState(true);
+    const [category, setCategory] = React.useState("");
 
     function onClick(adjustment: number) {
         setTransactionAmount(
@@ -51,13 +53,23 @@ export function CreateTransactionDrawer() {
             <DrawerTrigger className="w-full">
                 <CreateTransactionButton />
             </DrawerTrigger>
+
             <DrawerContent>
                 <div className="mx-auto w-full max-w-sm">
-                    <DrawerHeader>
+                    <DrawerHeader className="flex justify-between">
                         <TransactionTypeSelect
                             isExpense={isExpense}
                             setIsExpense={setIsExpense}
                         />
+
+                        {isExpense ? (
+                            <ExpenseCategorySelect
+                                category={category}
+                                setCategory={setCategory}
+                            />
+                        ) : (
+                            <div className="w-full"></div>
+                        )}
                     </DrawerHeader>
                     <div className="p-4 pb-0">
                         <div className="flex items-center justify-center space-x-2">
@@ -71,6 +83,7 @@ export function CreateTransactionDrawer() {
                                 <Minus />
                                 <span className="sr-only">Decrease</span>
                             </Button>
+
                             <div className="flex-1 text-center">
                                 <div className="text-7xl font-bold tracking-tighter">
                                     {transactionAmount}
@@ -79,6 +92,7 @@ export function CreateTransactionDrawer() {
                                     Leaves
                                 </div>
                             </div>
+
                             <Button
                                 variant="outline"
                                 size="icon"
