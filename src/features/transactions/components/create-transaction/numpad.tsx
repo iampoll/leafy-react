@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CoolMode } from "@/components/ui/cool-mode";
+import { FadeIn } from "@/components/fade-in";
 
 const Numpad = ({
     transactionAmount,
@@ -56,7 +57,15 @@ const Numpad = ({
                     variant="secondary"
                     onClick={handleDelete}
                 >
-                    ⌫
+                    <FadeIn
+                        direction="right"
+                        framerProps={{
+                            show: { transition: { delay: 0.5 } },
+                        }}
+                        className="w-full"
+                    >
+                        ⌫
+                    </FadeIn>
                 </Button>
             </section>
 
@@ -141,13 +150,21 @@ const Numpad = ({
                 </div>
 
                 <div className="flex justify-around w-[25%]">
-                    <Button
-                        className="w-full rounded-3xl h-full"
-                        onClick={onSubmit}
-                        disabled={transactionAmount === 0}
+                    <FadeIn
+                        direction="right"
+                        framerProps={{
+                            show: { transition: { delay: 1 } },
+                        }}
+                        className="w-full"
                     >
-                        <Check />
-                    </Button>
+                        <Button
+                            className="w-full rounded-3xl h-full"
+                            onClick={onSubmit}
+                            disabled={transactionAmount === 0}
+                        >
+                            <Check />
+                        </Button>
+                    </FadeIn>
                 </div>
             </section>
         </div>
