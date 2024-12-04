@@ -8,8 +8,7 @@ const TransactionCards = () => {
 
     if (isLoading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
-    if (!filteredTransactions?.length)
-        return <div>Create your first transaction</div>;
+    if (!filteredTransactions?.length) return null;
 
     const sortedTransactionsByDate = filteredTransactions.sort(
         (a: Transaction, b: Transaction) =>
