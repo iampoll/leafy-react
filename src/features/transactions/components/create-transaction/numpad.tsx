@@ -1,6 +1,7 @@
+import { Check, Delete } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { CoolMode } from "@/components/ui/cool-mode";
-import { Check, Delete } from "lucide-react";
 
 const Numpad = ({
     transactionAmount,
@@ -112,7 +113,9 @@ const Numpad = ({
                             <Button
                                 className="w-full rounded-3xl aspect-square h-20 text-2xl bg-yellow-200"
                                 variant="secondary"
-                            >🔴</Button>
+                            >
+                                🔴
+                            </Button>
                         </CoolMode>
                         <Button
                             className="w-full rounded-3xl aspect-square h-20 text-2xl"

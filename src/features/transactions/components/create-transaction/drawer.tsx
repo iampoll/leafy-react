@@ -20,6 +20,7 @@ import Numpad from "./numpad";
 import { TransactionTypeSelect } from "./type-select";
 import { ExpenseCategorySelect } from "./expense-category-select";
 import { useTransactions } from "../../contexts/use-transactions";
+import confetti from "canvas-confetti";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction } = useCreateTransaction();
@@ -50,9 +51,12 @@ export function CreateTransactionDrawer() {
                     toast.success("Transaction created successfully");
                     refetchWallet();
                     refetchTransactions();
-                    setIsOpen(false);
+
                     setTransactionAmount(0);
                     setCategory(16);
+
+                    setIsOpen(false);
+                    triggerConfetti();
                 },
                 onError: () => {
                     toast.error("Please select a category");
@@ -132,3 +136,41 @@ export function CreateTransactionDrawer() {
         </Drawer>
     );
 }
+
+const triggerConfetti = () => {
+    const scalar = 2;
+    const unicorn = confetti.shapeFromText({ text: "🍃", scalar });
+
+    const defaults = {
+        spread: 360,
+        ticks: 60,
+        gravity: 0,
+        decay: 0.96,
+        startVelocity: 20,
+        shapes: [unicorn],
+        scalar,
+    };
+
+    const shoot = () => {
+        confetti({
+            ...defaults,
+            particleCount: 30,
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 5,
+        });
+
+        confetti({
+            ...defaults,
+            particleCount: 15,
+            scalar: scalar / 2,
+            shapes: ["circle"],
+        });
+    };
+
+    setTimeout(shoot, 0);
+    setTimeout(shoot, 100);
+    setTimeout(shoot, 200);
+};

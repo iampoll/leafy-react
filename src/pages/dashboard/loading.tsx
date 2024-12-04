@@ -20,6 +20,7 @@ const DashboardSkeleton = () => {
 
             <section className="flex flex-col gap-2 px-4">
                 <Skeleton className="h-[62px] w-full" />
+                <Skeleton className="h-[62px] w-full" />
             </section>
         </div>
     );
