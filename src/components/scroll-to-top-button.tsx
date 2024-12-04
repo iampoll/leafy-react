@@ -13,7 +13,7 @@ export function ScrollToTopButton() {
     return (
         <Button
             className={cn(
-                "hover:scale-110 fixed bottom-12 right-1/2 translate-x-1/2 md:right-6 md:translate-x-0 rounded-full px-4 py-8 transition-opacity",
+                "hover:scale-110 fixed md:hidden bottom-12 right-1/2 translate-x-1/2 md:right-6 md:translate-x-0 rounded-full px-4 py-8 transition-opacity",
                 scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
             onClick={scrollToTop}

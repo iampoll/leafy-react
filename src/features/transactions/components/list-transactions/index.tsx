@@ -17,7 +17,7 @@ const TransactionCards = () => {
     );
 
     return (
-        <div className="space-y-3 py-8 ">
+        <div className="space-y-3 py-8 mb-20">
             <ListTransactionsHeader />
 
             {sortedTransactionsByDate.map(
