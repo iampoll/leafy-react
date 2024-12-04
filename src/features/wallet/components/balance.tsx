@@ -4,14 +4,11 @@ import { useWallet } from "../contexts/use-wallet";
 const Balance = () => {
     const { wallet, isLoading, isError, error } = useWallet();
 
-    if (isLoading) {
-        return <div>Loading wallet info...</div>;
+    if (isLoading || !wallet) {
+        return null;
     }
     if (isError) {
         return <div>Error: {error?.message}</div>;
-    }
-    if (!wallet) {
-        return <div>No wallet found</div>;
     }
 
     return (

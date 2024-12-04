@@ -56,7 +56,7 @@ export function CreateTransactionDrawer() {
                     setCategory(16);
 
                     setIsOpen(false);
-                    triggerConfetti();
+                    triggerConfetti(isExpense);
                 },
                 onError: () => {
                     toast.error("Please select a category");
@@ -137,9 +137,12 @@ export function CreateTransactionDrawer() {
     );
 }
 
-const triggerConfetti = () => {
+const triggerConfetti = (isExpense: boolean) => {
     const scalar = 2;
-    const unicorn = confetti.shapeFromText({ text: "🍃", scalar });
+    const unicorn = confetti.shapeFromText({
+        text: isExpense ? "🍃" : "😃",
+        scalar,
+    });
 
     const defaults = {
         spread: 360,
@@ -170,7 +173,14 @@ const triggerConfetti = () => {
         });
     };
 
-    setTimeout(shoot, 0);
-    setTimeout(shoot, 100);
-    setTimeout(shoot, 200);
+    if (isExpense) {
+        setTimeout(shoot, 0);
+    } else {
+        confetti({
+            origin: {
+                x: 0.5,
+                y: 0.5,
+            },
+        });
+    }
 };
