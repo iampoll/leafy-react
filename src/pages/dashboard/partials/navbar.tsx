@@ -19,8 +19,12 @@ const Navbar = () => {
             <div className="flex items-center justify-between gap-2">
                 <CreateTransactionDrawerWithChildren>
                     <FadeIn direction="down">
-                        <Button className="rounded-full h-12 w-full">
-                            <Plus className="size-4 mr-2" />
+                        <Button
+                            variant="expandIcon"
+                            Icon={Plus}
+                            iconPlacement="left"
+                            className="rounded-full h-12 w-full"
+                        >
                             Create Transaction
                         </Button>
                     </FadeIn>
@@ -28,10 +32,11 @@ const Navbar = () => {
 
                 <FadeIn direction="down">
                     <Button
+                        variant="gooeyRight"
                         onClick={scrollToTop}
                         className="rounded-full h-12 aspect-square"
                     >
-                        <ArrowUp className="size-4" />
+                        <ArrowUp className="size-4 group-hover:animate-pulse" />
                     </Button>
                 </FadeIn>
             </div>
