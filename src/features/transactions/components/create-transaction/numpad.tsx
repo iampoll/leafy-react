@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { CoolMode } from "@/components/ui/cool-mode";
 import { Check, Delete } from "lucide-react";
 
 const Numpad = ({
@@ -107,10 +108,12 @@ const Numpad = ({
                         </Button>
                     </section>
                     <section className="flex justify-around ">
-                        <Button
-                            className="w-full rounded-3xl aspect-square h-20 text-2xl bg-yellow-200"
-                            variant="secondary"
-                        ></Button>
+                        <CoolMode>
+                            <Button
+                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-yellow-200"
+                                variant="secondary"
+                            >🔴</Button>
+                        </CoolMode>
                         <Button
                             className="w-full rounded-3xl aspect-square h-20 text-2xl"
                             variant="secondary"
@@ -118,10 +121,19 @@ const Numpad = ({
                         >
                             0
                         </Button>
-                        <Button
-                            className="w-full rounded-3xl aspect-square h-20 text-2xl bg-orange-200"
-                            variant="secondary"
-                        ></Button>
+                        <CoolMode
+                            options={{
+                                particle:
+                                    "https://png.pngtree.com/png-vector/20230215/ourmid/pngtree-dizzy-funny-leaf-facial-expression-emoji-icon-png-image_6601965.png",
+                            }}
+                        >
+                            <Button
+                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-orange-200"
+                                variant="secondary"
+                            >
+                                🍃
+                            </Button>
+                        </CoolMode>
                     </section>
                 </div>
 
