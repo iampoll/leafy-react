@@ -1,14 +1,16 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, ReactNode, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
 import { Transaction } from "../types";
 
 interface TransactionsContextType {
     transactions: Transaction[];
+    filteredTransactions: Transaction[];
     isLoading: boolean;
     isError: boolean;
     error: Error | null;
     refetchTransactions: () => Promise<void>;
+    setActiveFilters: (filters: string[]) => void;
 }
 
 const TransactionsContext = createContext<TransactionsContextType | undefined>(
@@ -16,8 +18,10 @@ const TransactionsContext = createContext<TransactionsContextType | undefined>(
 );
 
 export function TransactionsProvider({ children }: { children: ReactNode }) {
+    const [activeFilters, setActiveFilters] = useState<string[]>([]);
+
     const {
-        data: transactions,
+        data: transactions = [],
         isLoading,
         isError,
         error,
@@ -30,6 +34,14 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
         },
     });
 
+    const filteredTransactions = useMemo(() => {
+        if (!activeFilters.length) return transactions;
+
+        return transactions.filter((transaction) =>
+            activeFilters.includes(String(transaction.category))
+        );
+    }, [transactions, activeFilters]);
+
     const refetchTransactions = async () => {
         await refetch();
     };
@@ -38,10 +50,12 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
         <TransactionsContext.Provider
             value={{
                 transactions,
+                filteredTransactions,
                 isLoading,
                 isError,
                 error: error as Error | null,
                 refetchTransactions,
+                setActiveFilters,
             }}
         >
             {children}

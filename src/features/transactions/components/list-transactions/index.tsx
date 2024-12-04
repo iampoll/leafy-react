@@ -1,4 +1,5 @@
 import { useTransactions } from "../../contexts/use-transactions";
+import ListTransactionsHeader from "./header";
 import TransactionCard from "./transaction-card";
 import { Transaction } from "./types";
 
@@ -16,6 +17,8 @@ const TransactionCards = () => {
 
     return (
         <div className="space-y-3 py-8 ">
+            <ListTransactionsHeader />
+
             {sortedTransactionsByDate.map((transaction: Transaction) => (
                 <TransactionCard
                     key={transaction.id}
