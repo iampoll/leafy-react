@@ -1,4 +1,4 @@
-import { Check, Delete } from "lucide-react";
+import { Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CoolMode } from "@/components/ui/cool-mode";
@@ -56,7 +56,7 @@ const Numpad = ({
                     variant="secondary"
                     onClick={handleDelete}
                 >
-                    <Delete />
+                    ⌫
                 </Button>
             </section>
 
@@ -111,7 +111,7 @@ const Numpad = ({
                     <section className="flex justify-around ">
                         <CoolMode>
                             <Button
-                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-yellow-200"
+                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-bg"
                                 variant="secondary"
                             >
                                 🔴
@@ -131,7 +131,7 @@ const Numpad = ({
                             }}
                         >
                             <Button
-                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-orange-200"
+                                className="w-full rounded-3xl aspect-square h-20 text-2xl bg-bg"
                                 variant="secondary"
                             >
                                 🍃

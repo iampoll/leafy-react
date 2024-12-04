@@ -5,7 +5,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { Frown, Laugh } from "lucide-react";
 
 export function TransactionTypeSelect({
     isExpense,
@@ -20,7 +19,7 @@ export function TransactionTypeSelect({
             onValueChange={(value) => setIsExpense(value === "true")}
         >
             <SelectTrigger
-                className={`rounded-full py-6 px-6 ${
+                className={`rounded-full py-6 px-6 border-none ${
                     isExpense ? "bg-red-200" : "bg-green-200"
                 }`}
             >
@@ -30,14 +29,14 @@ export function TransactionTypeSelect({
             <SelectContent>
                 <SelectItem value="true">
                     <span className="flex gap-2 items-center">
-                        <Frown className="size-4" />
-                        Expense
+                        {/* <Frown className="size-4" /> */}
+                        😔 Expense
                     </span>
                 </SelectItem>
                 <SelectItem value="false">
                     <span className="flex gap-2 items-center">
-                        <Laugh className="size-4" />
-                        Income
+                        {/* <Laugh className="size-4" /> */}
+                        😃 Income
                     </span>
                 </SelectItem>
             </SelectContent>
