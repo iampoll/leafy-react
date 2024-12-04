@@ -15,7 +15,11 @@ const Balance = () => {
     }
 
     return (
-        <section className="flex gap-2 items-center justify-center">
+        <section
+            className={`flex gap-2 items-center justify-center ${
+                wallet.balance < 0 && "text-red-500"
+            }`}
+        >
             🍃 <H1>{wallet.balance.toString()}</H1>
         </section>
     );
