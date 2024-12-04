@@ -13,8 +13,8 @@ export function ExpenseCategorySelect({
     category,
     setCategory,
 }: {
-    category: string;
-    setCategory: (category: string) => void;
+    category: number;
+    setCategory: (category: number) => void;
 }) {
     const { data: categories, isLoading, isError, error } = useGetCategories();
 
@@ -22,21 +22,30 @@ export function ExpenseCategorySelect({
     if (isError) return <div>{error?.message}</div>;
     if (!categories) return <div>No categories found</div>;
 
+    console.log("category", category);
+
     return (
         <Select
-            // defaultValue={category}
-            onValueChange={(value) => setCategory(value)}
+            defaultValue={category.toString()}
+            onValueChange={(value) => setCategory(Number(value))}
         >
             <SelectTrigger className="rounded-full py-6 px-6">
                 <SelectValue placeholder="Select category" />
             </SelectTrigger>
 
             <SelectContent>
-                {/* dont include income or index 16 */}
+                <SelectItem value="16" disabled>
+                    <span className="flex gap-2 items-center">
+                        Select category
+                    </span>
+                </SelectItem>
                 {categories
                     ?.filter((category: Category) => Number(category.id) !== 16)
                     .map((category: Category, index: number) => (
-                        <SelectItem value={category.id} key={category.id}>
+                        <SelectItem
+                            value={category.id.toString()}
+                            key={category.id}
+                        >
                             {emojisWithBackground[index].emoji} {category.name}
                         </SelectItem>
                     ))}

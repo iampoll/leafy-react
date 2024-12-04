@@ -51,7 +51,7 @@ export function UpdateTransactionDrawer({
                 id: transaction.id,
                 isExpense: isExpense,
                 amount: transactionAmount,
-                category: category.toString(),
+                category: category,
             },
             {
                 onSuccess: () => {
@@ -82,10 +82,8 @@ export function UpdateTransactionDrawer({
 
                         {isExpense && (
                             <ExpenseCategorySelect
-                                category={category.toString()}
-                                setCategory={(value) =>
-                                    setCategory(Number(value))
-                                }
+                                category={category}
+                                setCategory={(value) => setCategory(value)}
                             />
                         )}
 

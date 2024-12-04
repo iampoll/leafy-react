@@ -30,7 +30,7 @@ export function CreateTransactionDrawer() {
 
     const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isExpense, setIsExpense] = React.useState(true);
-    const [category, setCategory] = React.useState("16");
+    const [category, setCategory] = React.useState(16);
 
     function onClick(adjustment: number) {
         setTransactionAmount(
@@ -52,7 +52,7 @@ export function CreateTransactionDrawer() {
                     refetchTransactions();
                     setIsOpen(false);
                     setTransactionAmount(0);
-                    setCategory("16");
+                    setCategory(16);
                 },
                 onError: () => {
                     toast.error("Please select a category");
@@ -61,10 +61,13 @@ export function CreateTransactionDrawer() {
         );
     }
 
+    React.useEffect(() => {
+        console.log("category", category);
+    }, [category]);
+
     return (
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTitle></DrawerTitle>
-
             <DrawerTrigger className="w-full">
                 <CreateTransactionButton />
             </DrawerTrigger>
@@ -86,6 +89,7 @@ export function CreateTransactionDrawer() {
                             <div className="w-full"></div>
                         )}
                     </DrawerHeader>
+
                     <div className="p-4 pb-0">
                         <div className="flex items-center justify-center space-x-2">
                             <Button

@@ -15,14 +15,14 @@ export type Category = {
 export interface CreateTransactionParams {
     isExpense: boolean;
     amount: number;
-    category: string;
+    category: number;
 }
 
 export interface UpdateTransactionParams {
     id: number;
     isExpense: boolean;
     amount: number;
-    category: string;
+    category: number;
 }
 
 export interface DeleteTransactionParams {
