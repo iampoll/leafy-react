@@ -22,8 +22,6 @@ export function ExpenseCategorySelect({
     if (isError) return <div>{error?.message}</div>;
     if (!categories) return <div>No categories found</div>;
 
-    console.log("category", category);
-
     return (
         <Select
             defaultValue={category.toString()}

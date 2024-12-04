@@ -61,10 +61,6 @@ export function CreateTransactionDrawer() {
         );
     }
 
-    React.useEffect(() => {
-        console.log("category", category);
-    }, [category]);
-
     return (
         <Drawer open={isOpen} onOpenChange={setIsOpen}>
             <DrawerTitle></DrawerTitle>
