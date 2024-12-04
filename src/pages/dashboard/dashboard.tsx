@@ -3,6 +3,7 @@ import { CreateTransactionDrawer } from "@/features/transactions/components/crea
 import TransactionCards from "@/features/transactions/components/list-transactions";
 import { TransactionsProvider } from "@/features/transactions/contexts/use-transactions";
 import BlurFade from "@/components/ui/blur-fade";
+import { ScrollToTopButton } from "@/components/scroll-to-top-button";
 
 const Dashboard = () => {
     return (
@@ -16,6 +17,8 @@ const Dashboard = () => {
             <BlurFade delay={0.25} inView>
                 <TransactionCards />
             </BlurFade>
+
+            <ScrollToTopButton />
         </TransactionsProvider>
     );
 };
