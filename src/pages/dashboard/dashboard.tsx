@@ -12,7 +12,9 @@ const Dashboard = () => {
             <BlurFade delay={0.25} inView className="space-y-2">
                 <Balance />
 
-                <CreateTransactionDrawer />
+                <div className="max-w-[220px] mx-auto">
+                    <CreateTransactionDrawer />
+                </div>
             </BlurFade>
 
             <BlurFade delay={0.25} inView>

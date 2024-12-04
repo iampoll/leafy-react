@@ -25,7 +25,7 @@ const CreateTransactionButton = () => {
                 variant="expandIcon"
                 Icon={Plus}
                 iconPlacement="left"
-                className="rounded-full"
+                className="rounded-full w-full"
                 size="lg"
             >
                 <SparklesText text="Create Transaction" className="text-sm" />
