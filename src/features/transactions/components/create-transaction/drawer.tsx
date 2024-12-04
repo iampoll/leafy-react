@@ -30,7 +30,7 @@ export function CreateTransactionDrawer() {
 
     const [transactionAmount, setTransactionAmount] = React.useState(0);
     const [isExpense, setIsExpense] = React.useState(true);
-    const [category, setCategory] = React.useState("");
+    const [category, setCategory] = React.useState("16");
 
     function onClick(adjustment: number) {
         setTransactionAmount(
@@ -43,8 +43,6 @@ export function CreateTransactionDrawer() {
             {
                 isExpense: isExpense,
                 amount: transactionAmount,
-                // if isExpense is false, i want to set the category to 0
-                // category: isExpense ? category : "0",
                 category: category,
             },
             {

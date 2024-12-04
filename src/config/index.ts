@@ -18,5 +18,6 @@ export const emojisWithBackground = [
     { emoji: "🧺", backgroundColor: "bg-green-200" },
     { emoji: "🎭", backgroundColor: "bg-yellow-200" },
     { emoji: "📺", backgroundColor: "bg-blue-200" },
-    { emoji: "💰", backgroundColor: "bg-red-200" },
+    { emoji: "🍃", backgroundColor: "bg-red-200" },
+    { emoji: "💰", backgroundColor: "bg-green-200" },
 ];
