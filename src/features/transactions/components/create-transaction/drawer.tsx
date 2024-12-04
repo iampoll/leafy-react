@@ -73,7 +73,7 @@ export function CreateTransactionDrawer() {
             </DrawerTrigger>
 
             <DrawerContent>
-                <div className="mx-auto w-full max-w-sm">
+                <div className="mx-auto w-full max-w-xs">
                     <DrawerHeader className="flex justify-between">
                         <TransactionTypeSelect
                             isExpense={isExpense}
