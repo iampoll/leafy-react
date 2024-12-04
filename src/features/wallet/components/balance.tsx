@@ -1,6 +1,5 @@
 import NumberTicker from "@/components/number-ticker";
 import { useWallet } from "../contexts/use-wallet";
-import { H1 } from "@/components/ui/typography";
 
 const Balance = () => {
     const { wallet, isLoading, isError, error } = useWallet();
@@ -22,10 +21,10 @@ const Balance = () => {
             }`}
         >
             🍃
-            <H1>
-                <NumberTicker value={wallet.balance} />
-            </H1>
-            {/* 🍃 <H1>{wallet.balance.toString()}</H1> */}
+            <NumberTicker
+                value={wallet.balance}
+                className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+            />
         </section>
     );
 };
