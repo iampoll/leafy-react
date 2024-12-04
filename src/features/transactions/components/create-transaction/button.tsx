@@ -4,12 +4,20 @@ import { Button } from "@/components/ui/button";
 
 import { useTransactions } from "../../contexts/use-transactions";
 import { RainbowButton } from "@/components/rainbow-button";
+import SparklesText from "@/components/sparkles-text";
 
 const CreateTransactionButton = () => {
     const { filteredTransactions } = useTransactions();
 
     if (!filteredTransactions?.length)
-        return <RainbowButton>Create your first transaction</RainbowButton>;
+        return (
+            <RainbowButton>
+                <SparklesText
+                    text="Create your first transaction"
+                    className="text-sm"
+                />
+            </RainbowButton>
+        );
 
     return (
         <section className="flex gap-2 justify-center">
@@ -20,7 +28,7 @@ const CreateTransactionButton = () => {
                 className="rounded-full"
                 size="lg"
             >
-                Create Transaction
+                <SparklesText text="Create Transaction" className="text-sm" />
             </Button>
         </section>
     );

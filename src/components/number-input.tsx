@@ -9,7 +9,7 @@ export default function NumberInput({
         <div className="space-y-2 font-bold">
             <div className="relative">
                 <Input
-                    className="peer pe-12 ps-6 w-full border-black border-2 font-bold h-12"
+                    className="peer pe-12 ps-6 w-full border-foreground border-4 font-bold h-12"
                     placeholder="0.00"
                     type="number"
                     onChange={(e) => onValueChange(Number(e.target.value))}

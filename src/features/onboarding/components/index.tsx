@@ -7,6 +7,7 @@ import NumberInput from "@/components/number-input";
 import { useState } from "react";
 import { useCreateWallet } from "@/features/wallet/api/use-create-wallet";
 import { useUser } from "@/hooks/use-user";
+import SparklesText from "@/components/sparkles-text";
 
 const Onboarding = () => {
     const [balance, setBalance] = useState(0);
@@ -32,7 +33,8 @@ const Onboarding = () => {
     return (
         <OnboardingLayout>
             <div className="space-y-4">
-                <H1>Set your initial balance</H1>
+                {/* <H1>Set your initial balance</H1> */}
+                <SparklesText text="Set your initial balance" />
 
                 <NumberInput onValueChange={handleSetBalance} />
 
