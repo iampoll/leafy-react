@@ -1,3 +1,4 @@
+import BlurFade from "@/components/ui/blur-fade";
 import { useTransactions } from "../../contexts/use-transactions";
 import ListTransactionsHeader from "./header";
 import TransactionCard from "./transaction-card";
@@ -19,12 +20,20 @@ const TransactionCards = () => {
         <div className="space-y-3 py-8 ">
             <ListTransactionsHeader />
 
-            {sortedTransactionsByDate.map((transaction: Transaction) => (
-                <TransactionCard
-                    key={transaction.id}
-                    transaction={transaction}
-                />
-            ))}
+            {sortedTransactionsByDate.map(
+                (transaction: Transaction, idx: number) => (
+                    <BlurFade
+                        key={transaction.id}
+                        delay={0.25 + idx * 0.05}
+                        inView
+                    >
+                        <TransactionCard
+                            key={transaction.id}
+                            transaction={transaction}
+                        />
+                    </BlurFade>
+                )
+            )}
         </div>
     );
 };

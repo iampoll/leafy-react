@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { H1 } from "@/components/ui/typography";
 import OnboardingLayout from "@/layouts/onboarding";
 import NumberInput from "@/components/number-input";
 import { useState } from "react";
@@ -33,7 +32,6 @@ const Onboarding = () => {
     return (
         <OnboardingLayout>
             <div className="space-y-4">
-                {/* <H1>Set your initial balance</H1> */}
                 <SparklesText text="Set your initial balance" />
 
                 <NumberInput onValueChange={handleSetBalance} />
