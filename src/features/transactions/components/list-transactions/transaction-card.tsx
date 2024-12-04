@@ -41,7 +41,7 @@ const TransactionCard = ({ transaction }: TransactionCardProps) => {
                             ? transaction.categoryName
                             : "Income"}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs tracking-tight text-muted-foreground">
                         {formattedDate}
                     </p>
                 </div>
