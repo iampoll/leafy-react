@@ -24,7 +24,7 @@ export function ExpenseCategorySelect({
 
     return (
         <Select
-            defaultValue={category}
+            // defaultValue={category}
             onValueChange={(value) => setCategory(value)}
         >
             <SelectTrigger className="rounded-full py-6 px-6">
@@ -32,11 +32,14 @@ export function ExpenseCategorySelect({
             </SelectTrigger>
 
             <SelectContent>
-                {categories?.map((category: Category, index: number) => (
-                    <SelectItem value={category.id} key={category.id}>
-                        {emojisWithBackground[index].emoji} {category.name}
-                    </SelectItem>
-                ))}
+                {/* dont include income or index 16 */}
+                {categories
+                    ?.filter((category: Category) => Number(category.id) !== 16)
+                    .map((category: Category, index: number) => (
+                        <SelectItem value={category.id} key={category.id}>
+                            {emojisWithBackground[index].emoji} {category.name}
+                        </SelectItem>
+                    ))}
             </SelectContent>
         </Select>
     );

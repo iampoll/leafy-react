@@ -52,6 +52,7 @@ export function CreateTransactionDrawer() {
                     refetchTransactions();
                     setIsOpen(false);
                     setTransactionAmount(0);
+                    setCategory("16");
                 },
                 onError: () => {
                     toast.error("Please select a category");
