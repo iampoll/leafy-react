@@ -5,7 +5,7 @@ const ProtectedRouteContent = () => {
     const { user, isLoading } = useUser();
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div>Loading</div>;
     }
 
     if (!user) {
