@@ -28,7 +28,7 @@ export function UpdateTransactionDrawer({
     children: React.ReactNode;
     transaction: Transaction;
 }) {
-    const { mutate: updateTransaction } = useUpdateTransaction();
+    const { mutate: updateTransaction, isPending } = useUpdateTransaction();
     const { refetchTransactions } = useTransactions();
     const { refetchWallet } = useWallet();
 
@@ -117,7 +117,9 @@ export function UpdateTransactionDrawer({
                                 size="icon"
                                 className="h-8 w-8 shrink-0 rounded-full"
                                 onClick={() => onClick(10)}
-                                disabled={transactionAmount >= 10000}
+                                disabled={
+                                    transactionAmount >= 10000 || isPending
+                                }
                             >
                                 <Plus />
                                 <span className="sr-only">Increase</span>

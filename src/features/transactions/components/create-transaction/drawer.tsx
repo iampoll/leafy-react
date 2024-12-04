@@ -23,7 +23,7 @@ import { useTransactions } from "../../contexts/use-transactions";
 import confetti from "canvas-confetti";
 
 export function CreateTransactionDrawer() {
-    const { mutate: createTransaction } = useCreateTransaction();
+    const { mutate: createTransaction, isPending } = useCreateTransaction();
     const { refetchTransactions } = useTransactions();
     const { refetchWallet } = useWallet();
 
@@ -117,7 +117,9 @@ export function CreateTransactionDrawer() {
                                 size="icon"
                                 className="h-8 w-8 shrink-0 rounded-full"
                                 onClick={() => onClick(10)}
-                                disabled={transactionAmount >= 10000}
+                                disabled={
+                                    transactionAmount >= 10000 || isPending
+                                }
                             >
                                 <Plus />
                                 <span className="sr-only">Increase</span>
