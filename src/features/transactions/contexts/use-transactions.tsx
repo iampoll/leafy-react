@@ -37,7 +37,7 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
     const filteredTransactions = useMemo(() => {
         if (!activeFilters.length) return transactions;
 
-        return transactions.filter((transaction) =>
+        return transactions.filter((transaction: Transaction) =>
             activeFilters.includes(String(transaction.category))
         );
     }, [transactions, activeFilters]);
