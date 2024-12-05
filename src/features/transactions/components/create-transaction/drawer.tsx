@@ -21,6 +21,7 @@ import { TransactionTypeSelect } from "./type-select";
 import { ExpenseCategorySelect } from "./expense-category-select";
 import { useTransactions } from "../../contexts/use-transactions";
 import confetti from "canvas-confetti";
+import { FadeIn } from "@/components/fade-in";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction, isPending } = useCreateTransaction();
@@ -74,58 +75,70 @@ export function CreateTransactionDrawer() {
 
             <DrawerContent>
                 <div className="mx-auto w-full max-w-xs">
-                    <DrawerHeader className="flex justify-between">
-                        <TransactionTypeSelect
-                            isExpense={isExpense}
-                            setIsExpense={setIsExpense}
-                        />
-
-                        {isExpense ? (
-                            <ExpenseCategorySelect
-                                category={category}
-                                setCategory={setCategory}
+                    <FadeIn
+                        framerProps={{
+                            show: { transition: { delay: 0.25 } },
+                        }}
+                    >
+                        <DrawerHeader className="flex justify-between">
+                            <TransactionTypeSelect
+                                isExpense={isExpense}
+                                setIsExpense={setIsExpense}
                             />
-                        ) : (
-                            <div className="w-full"></div>
-                        )}
-                    </DrawerHeader>
 
-                    <div className="p-4 pb-0">
-                        <div className="flex items-center justify-center space-x-2">
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 shrink-0 rounded-full"
-                                onClick={() => onClick(-10)}
-                                disabled={transactionAmount <= 0}
-                            >
-                                <Minus />
-                                <span className="sr-only">Decrease</span>
-                            </Button>
+                            {isExpense ? (
+                                <ExpenseCategorySelect
+                                    category={category}
+                                    setCategory={setCategory}
+                                />
+                            ) : (
+                                <div className="w-full"></div>
+                            )}
+                        </DrawerHeader>
+                    </FadeIn>
 
-                            <div className="flex-1 text-center">
-                                <div className="text-7xl font-bold tracking-tighter">
-                                    {transactionAmount}
+                    <FadeIn
+                        framerProps={{
+                            show: { transition: { delay: 0.5 } },
+                        }}
+                    >
+                        <div className="p-4 pb-0">
+                            <div className="flex items-center justify-center space-x-2">
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="h-8 w-8 shrink-0 rounded-full"
+                                    onClick={() => onClick(-10)}
+                                    disabled={transactionAmount <= 0}
+                                >
+                                    <Minus />
+                                    <span className="sr-only">Decrease</span>
+                                </Button>
+
+                                <div className="flex-1 text-center">
+                                    <div className="text-7xl font-bold tracking-tighter">
+                                        {transactionAmount}
+                                    </div>
+                                    <div className="text-[0.70rem] uppercase text-muted-foreground">
+                                        Leaves
+                                    </div>
                                 </div>
-                                <div className="text-[0.70rem] uppercase text-muted-foreground">
-                                    Leaves
-                                </div>
+
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="h-8 w-8 shrink-0 rounded-full"
+                                    onClick={() => onClick(10)}
+                                    disabled={
+                                        transactionAmount >= 10000 || isPending
+                                    }
+                                >
+                                    <Plus />
+                                    <span className="sr-only">Increase</span>
+                                </Button>
                             </div>
-
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="h-8 w-8 shrink-0 rounded-full"
-                                onClick={() => onClick(10)}
-                                disabled={
-                                    transactionAmount >= 10000 || isPending
-                                }
-                            >
-                                <Plus />
-                                <span className="sr-only">Increase</span>
-                            </Button>
                         </div>
-                    </div>
+                    </FadeIn>
 
                     <Numpad
                         transactionAmount={transactionAmount}
