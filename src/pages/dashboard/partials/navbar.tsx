@@ -9,7 +9,31 @@ const Navbar = () => {
     const scrolled = useScrollTop();
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        const currentPosition = window.pageYOffset;
+        const duration = 1000;
+        const start = performance.now();
+
+        const animateScroll = (currentTime: number) => {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+
+            const easeInOutCubic = (progress: number) => {
+                return progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            };
+
+            window.scrollTo({
+                top: currentPosition * (1 - easeInOutCubic(progress)),
+                behavior: "auto",
+            });
+
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            }
+        };
+
+        requestAnimationFrame(animateScroll);
     };
 
     if (!scrolled) return null;

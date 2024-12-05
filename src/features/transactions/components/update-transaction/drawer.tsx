@@ -128,6 +128,7 @@ export function UpdateTransactionDrawer({
                     </div>
 
                     <Numpad
+                        isPending={isPending}
                         transactionAmount={transactionAmount}
                         onSubmit={onSubmit}
                         setTransactionAmount={setTransactionAmount}

@@ -4,15 +4,19 @@ import { Button } from "@/components/ui/button";
 import { CoolMode } from "@/components/ui/cool-mode";
 import { FadeIn } from "@/components/fade-in";
 
-const Numpad = ({
-    transactionAmount,
-    setTransactionAmount,
-    onSubmit,
-}: {
+interface NumpadProps {
+    isPending: boolean;
     transactionAmount: number;
     setTransactionAmount: (amount: number) => void;
     onSubmit: () => void;
-}) => {
+}
+
+const Numpad = ({
+    isPending,
+    transactionAmount,
+    setTransactionAmount,
+    onSubmit,
+}: NumpadProps) => {
     const handleNumberClick = (num: number) => {
         const newAmount = Number(transactionAmount.toString() + num);
         setTransactionAmount(newAmount);
@@ -184,7 +188,7 @@ const Numpad = ({
                         <Button
                             className="w-full rounded-3xl h-full"
                             onClick={onSubmit}
-                            disabled={transactionAmount === 0}
+                            disabled={transactionAmount === 0 || isPending}
                         >
                             <Check />
                         </Button>

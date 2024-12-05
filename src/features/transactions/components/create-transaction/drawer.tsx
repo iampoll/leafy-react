@@ -58,6 +58,7 @@ export function CreateTransactionDrawer() {
 
                     setIsOpen(false);
                     triggerConfetti(isExpense);
+                    scrollToTop();
                 },
                 onError: () => {
                     toast.error("Please select a category");
@@ -129,9 +130,7 @@ export function CreateTransactionDrawer() {
                                     size="icon"
                                     className="h-8 w-8 shrink-0 rounded-full"
                                     onClick={() => onClick(10)}
-                                    disabled={
-                                        transactionAmount >= 10000 || isPending
-                                    }
+                                    disabled={isPending}
                                 >
                                     <Plus />
                                     <span className="sr-only">Increase</span>
@@ -141,6 +140,7 @@ export function CreateTransactionDrawer() {
                     </FadeIn>
 
                     <Numpad
+                        isPending={isPending}
                         transactionAmount={transactionAmount}
                         onSubmit={onSubmit}
                         setTransactionAmount={setTransactionAmount}
@@ -198,4 +198,36 @@ const triggerConfetti = (isExpense: boolean) => {
             },
         });
     }
+};
+
+const scrollToTop = () => {
+    const scroll = () => {
+        const currentPosition = window.pageYOffset;
+        const duration = 1000;
+        const start = performance.now();
+
+        const animateScroll = (currentTime: number) => {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+
+            const easeInOutCubic = (progress: number) => {
+                return progress < 0.5
+                    ? 4 * progress * progress * progress
+                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            };
+
+            window.scrollTo({
+                top: currentPosition * (1 - easeInOutCubic(progress)),
+                behavior: "auto",
+            });
+
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            }
+        };
+
+        requestAnimationFrame(animateScroll);
+    };
+
+    scroll();
 };

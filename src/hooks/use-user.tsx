@@ -31,7 +31,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     } = useQuery({
         queryKey: ["user"],
         queryFn: async () => {
-            const { data } = await api.get("/api/manage/info");
+            const { data } = await api.get("/api/users");
             return data;
         },
     });
