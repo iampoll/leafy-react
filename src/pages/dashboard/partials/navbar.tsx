@@ -25,7 +25,7 @@ const Navbar = () => {
                     <Button
                         variant="gooeyRight"
                         onClick={scrollToTop}
-                        className="rounded-full h-12 aspect-square"
+                        className="rounded-full h-12 aspect-square hover:mb-2"
                     >
                         <ArrowUp className="size-4 group-hover:animate-pulse" />
                     </Button>
