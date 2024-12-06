@@ -4,6 +4,7 @@ import NotFound from "@/pages/not-found";
 import AuthLayout from "@/layouts/auth";
 import { DashboardIndex, Home, Login, Register } from "@/pages";
 import ProtectedRoute from "@/components/auth/protected-route";
+import ProfilePage from "@/pages/u/[name]";
 
 export const routesConfig: RouteObject[] = [
     {
@@ -32,6 +33,10 @@ export const routesConfig: RouteObject[] = [
                 element: <DashboardIndex />,
             },
         ],
+    },
+    {
+        path: "u/:name",
+        element: <ProfilePage />,
     },
     {
         path: "*",
