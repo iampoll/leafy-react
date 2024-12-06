@@ -1,12 +1,19 @@
 import { createContext, useContext, ReactNode } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { AxiosError } from "axios";
 
 interface User {
     id: string;
     email: string;
     isOnboarded: boolean;
+    name: string;
+}
+
+interface UpdateUser {
+    name: string;
 }
 
 interface UserContextType {
@@ -16,6 +23,8 @@ interface UserContextType {
     error: Error | null;
     refetchUser: () => Promise<void>;
     handleLogout: () => Promise<void>;
+    updateUser: (user: UpdateUser) => void;
+    isUpdatingUser: boolean;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
@@ -33,6 +42,19 @@ export function UserProvider({ children }: { children: ReactNode }) {
         queryFn: async () => {
             const { data } = await api.get("/api/users");
             return data;
+        },
+    });
+
+    const { mutate: updateUser, isPending: isUpdatingUser } = useMutation({
+        mutationFn: async (user: UpdateUser) => {
+            const { data } = await api.patch("/api/users", user);
+            return data;
+        },
+        onSuccess: () => {
+            refetch();
+        },
+        onError: (error: AxiosError) => {
+            toast.error(error.response?.data as string);
         },
     });
 
@@ -54,6 +76,8 @@ export function UserProvider({ children }: { children: ReactNode }) {
                 error: error as Error | null,
                 refetchUser,
                 handleLogout,
+                updateUser,
+                isUpdatingUser,
             }}
         >
             {children}
