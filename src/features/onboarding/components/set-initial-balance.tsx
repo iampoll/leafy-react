@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import NumberInput from "@/components/number-input";
 import { useState } from "react";
 import { useCreateWallet } from "@/features/wallet/api/use-create-wallet";
-import { useUser } from "@/hooks/use-user";
+import { useUser } from "@/providers/user-provider";
 import SparklesText from "@/components/sparkles-text";
 
 const SetInitialBalance = () => {

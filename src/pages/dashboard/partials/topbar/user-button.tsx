@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { useUser } from "@/hooks/use-user";
+import { useUser } from "@/providers/user-provider";
 import { useNavigate } from "react-router-dom";
 
 const UserButton = () => {

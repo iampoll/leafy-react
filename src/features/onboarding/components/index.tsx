@@ -1,4 +1,4 @@
-import { useUser } from "@/hooks/use-user";
+import { useUser } from "@/providers/user-provider";
 import SetInitialBalance from "./set-initial-balance";
 import SetName from "./set-name";
 import OnboardingLayout from "./layout";

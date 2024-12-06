@@ -1,7 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { useUser } from "@/hooks/use-user";
+import { useUser } from "@/providers/user-provider";
 import SparklesText from "@/components/sparkles-text";
 import { Input } from "@/components/ui/input";
 

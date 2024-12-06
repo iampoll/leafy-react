@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useUser } from "@/hooks/use-user";
+import { useUser } from "@/providers/user-provider";
 import { LogOut } from "lucide-react";
 
 export default function LogoutButton() {

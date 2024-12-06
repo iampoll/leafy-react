@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api/client";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -30,7 +30,9 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export function UserProvider({ children }: { children: ReactNode }) {
+    const queryClient = useQueryClient();
     const navigate = useNavigate();
+
     const {
         data: user,
         isLoading,
@@ -64,6 +66,11 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
     const handleLogout = async () => {
         localStorage.removeItem("token");
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+        queryClient.invalidateQueries({ queryKey: ["transactions"] });
+        queryClient.invalidateQueries({ queryKey: ["categories"] });
+        queryClient.invalidateQueries({ queryKey: ["wallet"] });
+
         navigate("/login");
     };
 

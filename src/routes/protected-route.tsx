@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { UserProvider, useUser } from "@/hooks/use-user";
+import { UserProvider, useUser } from "@/providers/user-provider";
 
 const ProtectedRouteContent = () => {
     const { user, isLoading } = useUser();
