@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useGetProfileByName } from "@/features/profile/api/use-get-profile-by-name";
 import NotFound from "@/pages/not-found";
+import ProfileLayout from "./layout";
 
 const ProfilePage = () => {
     const { name } = useParams();
@@ -9,7 +10,19 @@ const ProfilePage = () => {
     if (isLoading) return <div>fetching profile...</div>;
     if (!data || isError) return <NotFound />;
 
-    return <div>{data.name}</div>;
+    const firstLetter = data.name.charAt(0);
+
+    return (
+        <ProfileLayout>
+            <section className="flex flex-col justify-center items-center gap-4">
+                <div className="font-bold rounded-full bg-muted h-24 w-24 flex justify-center items-center">
+                    {firstLetter}
+                </div>
+
+                <div className="text-sm font-bold">{data.name}</div>
+            </section>
+        </ProfileLayout>
+    );
 };
 
 export default ProfilePage;
