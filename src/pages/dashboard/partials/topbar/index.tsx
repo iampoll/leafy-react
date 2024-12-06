@@ -1,5 +1,6 @@
 import { siteConfig } from "@/config";
-import LogoutButton from "@/features/auth/components/logout-button";
+// import LogoutButton from "@/features/auth/components/logout-button";
+import UserButton from "./user-button";
 
 const Topbar = () => {
     return (
@@ -9,7 +10,8 @@ const Topbar = () => {
                     {siteConfig.name}
                 </span>
 
-                <LogoutButton />
+                {/* <LogoutButton /> */}
+                <UserButton />
             </div>
         </header>
     );
