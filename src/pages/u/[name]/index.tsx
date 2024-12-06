@@ -20,6 +20,9 @@ const ProfilePage = () => {
                 </div>
 
                 <div className="text-sm font-bold">{data.name}</div>
+                <div className="text-sm text-muted-foreground">
+                    Level {data.level.currentLevel}
+                </div>
             </section>
         </ProfileLayout>
     );

@@ -4,11 +4,13 @@ import Topbar from "./topbar";
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="max-w-sm p-4 mx-auto space-y-8">
-            <BlurFade delay={0} inView>
+            <BlurFade delay={0.15} inView>
                 <Topbar />
             </BlurFade>
 
-            {children}
+            <BlurFade delay={0.25} inView>
+                {children}
+            </BlurFade>
         </div>
     );
 };
