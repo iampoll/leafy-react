@@ -1,7 +1,10 @@
+import { z } from "zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import { useAuth } from "@/providers/auth-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import { registerSchema } from "../types";
 
 import { Button } from "@/components/ui/button";
@@ -21,14 +24,12 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
-import { useRegister } from "../api/use-register";
 
 type RegisterFormValues = z.infer<typeof registerSchema>;
 
 function RegisterFormFields() {
     const navigate = useNavigate();
-    const register = useRegister();
+    const { register, isRegistering } = useAuth();
 
     const form = useForm<RegisterFormValues>({
         resolver: zodResolver(registerSchema),
@@ -41,7 +42,7 @@ function RegisterFormFields() {
 
     async function onSubmit(data: RegisterFormValues) {
         try {
-            await register.mutateAsync(data);
+            await register(data);
             toast.success("Registration successful! Please login.");
             navigate("/login");
         } catch (error) {
@@ -108,11 +109,9 @@ function RegisterFormFields() {
                 <Button
                     type="submit"
                     className="w-full"
-                    disabled={register.isPending}
+                    disabled={isRegistering}
                 >
-                    {register.isPending
-                        ? "Creating account..."
-                        : "Create account"}
+                    {isRegistering ? "Creating account..." : "Create account"}
                 </Button>
             </form>
         </Form>

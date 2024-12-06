@@ -1,8 +1,10 @@
+import { z } from "zod";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+
+import { useAuth } from "@/providers/auth-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useLogin } from "../api/use-login";
 import { loginSchema } from "../types";
 
 import { Button } from "@/components/ui/button";
@@ -22,13 +24,12 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { toast } from "sonner";
 
 type LoginFormValues = z.infer<typeof loginSchema>;
 
 function LoginFormFields() {
     const navigate = useNavigate();
-    const login = useLogin();
+    const { login, isLoggingIn } = useAuth();
 
     const form = useForm<LoginFormValues>({
         resolver: zodResolver(loginSchema),
@@ -40,7 +41,7 @@ function LoginFormFields() {
 
     async function onSubmit(data: LoginFormValues) {
         try {
-            await login.mutateAsync(data);
+            await login(data);
 
             navigate("/dashboard");
         } catch (error) {
@@ -98,12 +99,8 @@ function LoginFormFields() {
                     </div>
                 )}
 
-                <Button
-                    type="submit"
-                    className="w-full"
-                    disabled={login.isPending}
-                >
-                    {login.isPending ? "Logging in..." : "Login"}
+                <Button type="submit" className="w-full" disabled={isLoggingIn}>
+                    {isLoggingIn ? "Logging in..." : "Login"}
                 </Button>
             </form>
         </Form>
