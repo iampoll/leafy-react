@@ -13,15 +13,17 @@ const Balance = () => {
 
     return (
         <section
-            className={`flex gap-2 items-center justify-center ${
+            className={`flex gap-2 items-center justify-center  ${
                 wallet.balance < 0 && "text-red-500"
             }`}
         >
-            🍃
-            <NumberTicker
-                value={wallet.balance}
-                className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
-            />
+            <div className="relative">
+                <span className="absolute left-[-2rem] bottom-[.3rem]">🍃</span>
+                <NumberTicker
+                    value={wallet.balance}
+                    className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl"
+                />
+            </div>
         </section>
     );
 };
