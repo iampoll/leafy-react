@@ -9,14 +9,23 @@ import {
 
 import { useUser } from "@/providers/user-provider";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "@/providers/auth-provider";
 
 const UserButton = () => {
-    const { user, handleLogout } = useUser();
+    const { user } = useUser();
+    const { logout } = useAuth();
+
     const navigate = useNavigate();
 
     if (!user) {
         return null;
     }
+
+    const handleLogout = async () => {
+        await logout();
+
+        navigate("/login");
+    };
 
     const firstLetter = user.name.charAt(0).toUpperCase();
 

@@ -2,17 +2,21 @@ import { createContext, useContext, ReactNode } from "react";
 import { useLogin } from "@/features/auth/api/use-login";
 import { useRegister } from "@/features/auth/api/use-register";
 import { LoginFormValues, RegisterFormValues } from "@/features/auth/types";
+import { useQueryClient } from "@tanstack/react-query";
 
 interface AuthContextType {
     login: (credentials: LoginFormValues) => Promise<void>;
     register: (credentials: RegisterFormValues) => Promise<void>;
     isLoggingIn: boolean;
     isRegistering: boolean;
+    logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+    const queryClient = useQueryClient();
+
     const { mutateAsync: loginMutation, isPending: isLoggingIn } = useLogin();
     const { mutateAsync: registerMutation, isPending: isRegistering } =
         useRegister();
@@ -25,6 +29,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await registerMutation(credentials);
     };
 
+    const logout = async () => {
+        localStorage.removeItem("token");
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+        queryClient.invalidateQueries({ queryKey: ["transactions"] });
+        queryClient.invalidateQueries({ queryKey: ["categories"] });
+        queryClient.invalidateQueries({ queryKey: ["wallet"] });
+    };
+
     return (
         <AuthContext.Provider
             value={{
@@ -32,6 +44,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 register,
                 isLoggingIn,
                 isRegistering,
+                logout,
             }}
         >
             {children}
