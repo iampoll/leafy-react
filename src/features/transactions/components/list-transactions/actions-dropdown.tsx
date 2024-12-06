@@ -24,7 +24,8 @@ export function ActionsDropdown({
     children: React.ReactNode;
     transaction: Transaction;
 }) {
-    const { mutate: deleteTransaction } = useDeleteTransaction();
+    const { mutate: deleteTransaction, isPending: isDeletingTransaction } =
+        useDeleteTransaction();
     const { refetchTransactions } = useTransactions();
     const { refetchWallet } = useWallet();
 
@@ -58,6 +59,7 @@ export function ActionsDropdown({
                     variant="ghost"
                     className="w-full justify-start"
                     onClick={handleDeleteTransaction}
+                    disabled={isDeletingTransaction}
                 >
                     ❌ Delete
                 </Button>
