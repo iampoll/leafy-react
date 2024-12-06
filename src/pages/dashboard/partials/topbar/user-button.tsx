@@ -10,6 +10,7 @@ import {
 import { useUser } from "@/providers/user-provider";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/providers/auth-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const UserButton = () => {
     const { user } = useUser();
@@ -59,6 +60,8 @@ const UserButton = () => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="max-w-[10rem]" align="end">
+                <ThemeToggle />
+
                 <Button
                     variant="ghost"
                     className="w-full justify-start gap-2"
