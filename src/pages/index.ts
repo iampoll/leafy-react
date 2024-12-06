@@ -8,4 +8,6 @@ const Register = lazy(() => import("@/pages/(auth)/register"));
 
 const DashboardIndex = lazy(() => import("@/pages/dashboard"));
 
-export { Home, Login, Register, DashboardIndex };
+const ProfilePage = lazy(() => import("@/pages/u/[name]"));
+
+export { Home, Login, Register, DashboardIndex, ProfilePage };
