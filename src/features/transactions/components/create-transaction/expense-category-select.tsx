@@ -27,7 +27,7 @@ export function ExpenseCategorySelect({
             defaultValue={category.toString()}
             onValueChange={(value) => setCategory(Number(value))}
         >
-            <SelectTrigger className="rounded-full py-6 px-6 bg-purple-200 border-none">
+            <SelectTrigger className="rounded-full py-6 px-6 bg-purple-200 border-none text-black">
                 <SelectValue placeholder="Select category" />
             </SelectTrigger>
 

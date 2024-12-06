@@ -19,7 +19,7 @@ export function TransactionTypeSelect({
             onValueChange={(value) => setIsExpense(value === "true")}
         >
             <SelectTrigger
-                className={`rounded-full py-6 px-6 border-none ${
+                className={`rounded-full py-6 px-6 border-none text-black ${
                     isExpense ? "bg-red-200" : "bg-green-200"
                 }`}
             >
