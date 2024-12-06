@@ -47,13 +47,8 @@ const UserButton = () => {
                         variant="ghost"
                         className="gap-2 text-xs px-4 py-0 items-center hidden md:flex"
                     >
-                        {/* <span className="h-4 w-4 flex justify-center items-center rounded-full border border-border">
-                        {firstLetter}
-                    </span> */}
-
                         <span>{user?.name}</span>
 
-                        {/* <ChevronsUpDown className="size-4" /> */}
                         <ChevronDown className="size-4" />
                     </Button>
                 </div>
@@ -65,7 +60,7 @@ const UserButton = () => {
                 <Button
                     variant="ghost"
                     className="w-full justify-start gap-2"
-                    onClick={() => navigate(`/u/${user.name}`)}
+                    onClick={() => navigate(`/u/${user.nameSlug}`)}
                 >
                     <User className="size-4" />
                     Profile
