@@ -1,7 +1,7 @@
-import OnboardingLayout from "@/layouts/onboarding";
 import { useUser } from "@/hooks/use-user";
 import SetInitialBalance from "./set-initial-balance";
 import SetName from "./set-name";
+import OnboardingLayout from "./layout";
 
 const Onboarding = () => {
     const { user } = useUser();

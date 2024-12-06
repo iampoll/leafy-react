@@ -8,9 +8,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { useUser } from "@/hooks/use-user";
+import { useNavigate } from "react-router-dom";
 
 const UserButton = () => {
     const { user, handleLogout } = useUser();
+    const navigate = useNavigate();
 
     if (!user) {
         return null;
@@ -48,7 +50,11 @@ const UserButton = () => {
             </DropdownMenuTrigger>
 
             <DropdownMenuContent className="max-w-[10rem]" align="end">
-                <Button variant="ghost" className="w-full justify-start gap-2">
+                <Button
+                    variant="ghost"
+                    className="w-full justify-start gap-2"
+                    onClick={() => navigate(`/u/${user.name}`)}
+                >
                     <User className="size-4" />
                     Profile
                 </Button>

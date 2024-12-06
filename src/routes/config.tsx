@@ -1,7 +1,7 @@
 import { RouteObject } from "react-router-dom";
 
 import NotFound from "@/pages/not-found";
-import AuthLayout from "@/layouts/auth";
+import AuthLayout from "@/pages/(auth)/layout";
 import { DashboardIndex, Home, Login, Register } from "@/pages";
 import ProtectedRoute from "@/components/auth/protected-route";
 import ProfilePage from "@/pages/u/[name]";
