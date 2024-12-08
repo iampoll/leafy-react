@@ -10,4 +10,6 @@ const DashboardIndex = lazy(() => import("@/pages/dashboard"));
 
 const ProfilePage = lazy(() => import("@/pages/u/[name]"));
 
-export { Home, Login, Register, DashboardIndex, ProfilePage };
+const Leaferboard = lazy(() => import("@/pages/leaferboard"));
+
+export { Home, Login, Register, DashboardIndex, ProfilePage, Leaferboard };

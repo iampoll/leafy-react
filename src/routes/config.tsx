@@ -2,7 +2,14 @@ import { RouteObject } from "react-router-dom";
 
 import NotFound from "@/pages/not-found";
 import AuthLayout from "@/pages/(auth)/layout";
-import { DashboardIndex, Home, Login, ProfilePage, Register } from "@/pages";
+import {
+    DashboardIndex,
+    Home,
+    Leaferboard,
+    Login,
+    ProfilePage,
+    Register,
+} from "@/pages";
 
 import ProtectedRoute from "./protected-route";
 
@@ -37,6 +44,10 @@ export const routesConfig: RouteObject[] = [
     {
         path: "u/:name",
         element: <ProfilePage />,
+    },
+    {
+        path: "leaferboard",
+        element: <Leaferboard />,
     },
     {
         path: "*",
