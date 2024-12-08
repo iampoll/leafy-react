@@ -9,6 +9,7 @@ interface User {
     email: string;
     isOnboarded: boolean;
     name: string;
+
     nameSlug: string;
 }
 

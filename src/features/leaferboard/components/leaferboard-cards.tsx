@@ -23,9 +23,7 @@ const LeaferboardCard = ({ user }: { user: GetLeaferboardResponse }) => {
         <section className="flex items-center justify-between border border-border rounded-full p-4">
             <div className="flex items-center gap-1 text-xs font-bold">
                 <p className="mr-3">
-                    {user.rank === 1 || user.rank === 2 || user.rank === 3
-                        ? "🔥"
-                        : "🚀"}
+                    🚀
                     {user.rank}
                 </p>
                 <p className="rounded-full bg-muted h-8 w-8 flex justify-center items-center">

@@ -29,7 +29,7 @@ const TopLeafers = () => {
                         <div className="absolute -top-4 text-2xl">👑</div>
                     )}
 
-                    <p className="rounded-full bg-muted h-24 aspect-square flex justify-center items-center border border-foreground">
+                    <p className="rounded-full bg-muted h-24 aspect-square flex justify-center items-center border border-foreground/20">
                         {leafer.name.slice(0, 1).toUpperCase()}
                     </p>
 
