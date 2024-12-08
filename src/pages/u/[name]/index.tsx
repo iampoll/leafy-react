@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useGetProfileByName } from "@/features/profile/api/use-get-profile-by-name";
 import NotFound from "@/pages/not-found";
 import ProfileLayout from "./layout";
+import { ExperienceDonutChart } from "./partials/experience-donut-chart";
+import { Badge } from "@/components/ui/badge";
 
 const ProfilePage = () => {
     const { name } = useParams();
@@ -15,14 +17,22 @@ const ProfilePage = () => {
     return (
         <ProfileLayout>
             <section className="flex flex-col justify-center items-center gap-4">
-                <div className="font-bold rounded-full bg-muted h-24 w-24 flex justify-center items-center">
+                <div className="font-bold rounded-full bg-muted h-32 w-32 flex justify-center items-center">
                     {firstLetter}
                 </div>
 
-                <div className="text-sm font-bold">{data.name}</div>
-                <div className="text-sm text-muted-foreground">
-                    Level {data.level.currentLevel}
+                <div className="absolute top-28">
+                    <Badge className="rounded-full">
+                        Level {data.level.currentLevel}
+                    </Badge>
                 </div>
+
+                <ExperienceDonutChart
+                    experiencePoints={data.level.experiencePoints}
+                    experienceThreshold={data.level.experienceThreshold}
+                />
+
+                <div className="text-sm font-bold">{data.name}</div>
             </section>
         </ProfileLayout>
     );

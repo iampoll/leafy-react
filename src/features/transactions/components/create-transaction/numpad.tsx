@@ -71,7 +71,7 @@ const Numpad = ({
                             framerProps={{
                                 show: { transition: { delay: 1.75 } },
                             }}
-                            className="w-full"
+                            className="w-full text-black"
                         >
                             ⌫
                         </FadeIn>
