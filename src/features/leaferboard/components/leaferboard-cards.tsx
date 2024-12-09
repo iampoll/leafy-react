@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useLeaferboard } from "../contexts/use-leaferboard";
 import { GetLeaferboardResponse } from "../types";
+import BlurFade from "@/components/ui/blur-fade";
 
 const LeaferboardCards = () => {
     const { leaferboard, isLoading } = useLeaferboard();
@@ -10,8 +11,10 @@ const LeaferboardCards = () => {
 
     return (
         <div className="space-y-2">
-            {leaferboard.map((user) => (
-                <LeaferboardCard key={user.nameSlug} user={user} />
+            {leaferboard.map((user, idx: number) => (
+                <BlurFade key={user.nameSlug} delay={0.25 + idx * 0.05} inView>
+                    <LeaferboardCard key={user.nameSlug} user={user} />
+                </BlurFade>
             ))}
         </div>
     );

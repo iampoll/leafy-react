@@ -10,9 +10,7 @@ const Leaferboard = () => {
                 <TopLeafers />
             </BlurFade>
 
-            <BlurFade delay={0.5} inView>
-                <LeaferboardCards />
-            </BlurFade>
+            <LeaferboardCards />
         </LeaferboardLayout>
     );
 };
