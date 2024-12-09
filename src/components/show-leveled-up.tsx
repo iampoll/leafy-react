@@ -23,27 +23,9 @@ const ShowLeveledUp = () => {
         setColor(theme === "dark" ? "#ffffff" : "#000000");
     }, [theme]);
 
-    const calculatePoints = (level: number) => {
-        const basePoints = 100;
-        const increasePerLevel = 1.1;
-        return Math.round(basePoints * Math.pow(increasePerLevel, level - 1));
-    };
-
     if (!isOpen) return null;
 
-    const image = theme === "light" ? astraliteLight : astraliteDark;
-    const image2 = theme === "light" ? stellarionLight : stellarion;
-    const image3 = theme === "light" ? nebulaflareLight : nebulaflare;
-
-    let finalImage;
-
-    if (levelData.currentLevel == 2) {
-        finalImage = image;
-    } else if (levelData.currentLevel == 3 || levelData.currentLevel == 4) {
-        finalImage = image2;
-    } else {
-        finalImage = image3;
-    }
+    const finalImage = getRankImage(levelData.currentLevel, theme);
 
     return (
         <section className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 h-[100svh] w-[100svw]  p-4  bg-background overflow-hidden">
@@ -87,3 +69,27 @@ const ShowLeveledUp = () => {
 };
 
 export default ShowLeveledUp;
+
+const calculatePoints = (level: number) => {
+    const basePoints = 100;
+    const increasePerLevel = 1.1;
+    return Math.round(basePoints * Math.pow(increasePerLevel, level - 1));
+};
+
+const getRankImage = (level: number, theme: string) => {
+    const image = theme === "light" ? astraliteLight : astraliteDark;
+    const image2 = theme === "light" ? stellarionLight : stellarion;
+    const image3 = theme === "light" ? nebulaflareLight : nebulaflare;
+
+    let finalImage;
+
+    if (level == 2) {
+        finalImage = image;
+    } else if (level == 3 || level == 4) {
+        finalImage = image2;
+    } else {
+        finalImage = image3;
+    }
+
+    return finalImage;
+};

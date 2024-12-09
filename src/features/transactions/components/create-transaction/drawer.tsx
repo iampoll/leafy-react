@@ -57,10 +57,6 @@ export function CreateTransactionDrawer() {
                             isLeveledUp: true,
                         });
                     }
-                    showLevelUp({
-                        currentLevel: data.isLeveledUp.level.currentLevel,
-                        isLeveledUp: true,
-                    });
 
                     toast.success("Transaction created successfully");
                     refetchWallet();
