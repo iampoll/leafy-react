@@ -1,12 +1,14 @@
 import Routes from "@/routes";
 import { Toaster } from "./components/ui/sonner";
+import ShowLeveledUp from "@/components/show-leveled-up";
 
 function App() {
     return (
         <div className="App">
-            <Routes />
-
+            <ShowLeveledUp />
             <Toaster />
+
+            <Routes />
         </div>
     );
 }

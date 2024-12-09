@@ -22,11 +22,13 @@ import { ExpenseCategorySelect } from "./expense-category-select";
 import { useTransactions } from "../../contexts/use-transactions";
 import confetti from "canvas-confetti";
 import { FadeIn } from "@/components/fade-in";
+import { useLevelUp } from "@/providers/use-level-up";
 
 export function CreateTransactionDrawer() {
     const { mutate: createTransaction, isPending } = useCreateTransaction();
     const { refetchTransactions } = useTransactions();
     const { refetchWallet } = useWallet();
+    const { showLevelUp } = useLevelUp();
 
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -48,7 +50,14 @@ export function CreateTransactionDrawer() {
                 category: category,
             },
             {
-                onSuccess: () => {
+                onSuccess: (data) => {
+                    if (data.isLeveledUp.isLeveledUp) {
+                        showLevelUp({
+                            currentLevel: data.isLeveledUp.level.currentLevel,
+                            isLeveledUp: true,
+                        });
+                    }
+
                     toast.success("Transaction created successfully");
                     refetchWallet();
                     refetchTransactions();
