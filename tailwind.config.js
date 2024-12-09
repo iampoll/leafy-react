@@ -62,7 +62,14 @@ export default {
     					backgroundPosition: '200% 0'
     				},
     				to: {
-    					backgroundPosition: '-200% 0'
+    					backgroundPosition: '-200% 0',
+    					'background-position': '0% 0%'
+    				},
+    				'0%': {
+    					'background-position': '0% 0%'
+    				},
+    				'50%': {
+    					'background-position': '100% 100%'
     				}
     			},
     			rainbow: {
@@ -85,12 +92,18 @@ export default {
     					transform: 'rotate(215deg) translateX(-500px)',
     					opacity: '0'
     				}
+    			},
+    			'border-beam': {
+    				'100%': {
+    					'offset-distance': '100%'
+    				}
     			}
     		},
     		animation: {
-    			shine: 'shine 8s ease-in-out infinite',
+    			shine: 'shine var(--duration) infinite linear',
     			rainbow: 'rainbow var(--speed, 2s) infinite linear',
-    			meteor: 'meteor 5s linear infinite'
+    			meteor: 'meteor 5s linear infinite',
+    			'border-beam': 'border-beam calc(var(--duration)*1s) infinite linear'
     		}
     	}
     },
