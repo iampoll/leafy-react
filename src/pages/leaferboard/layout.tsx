@@ -15,11 +15,7 @@ const LeaferboardLayout = ({ children }: { children: React.ReactNode }) => {
 
             {!isLoggedIn && <div className="h-12"></div>}
 
-            <LeaferboardProvider>
-                <BlurFade delay={0.25} inView>
-                    {children}
-                </BlurFade>
-            </LeaferboardProvider>
+            <LeaferboardProvider>{children}</LeaferboardProvider>
         </div>
     );
 };

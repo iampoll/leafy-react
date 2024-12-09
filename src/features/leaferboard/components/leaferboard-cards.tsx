@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useLeaferboard } from "../contexts/use-leaferboard";
 import { GetLeaferboardResponse } from "../types";
 
@@ -19,8 +20,15 @@ const LeaferboardCards = () => {
 export default LeaferboardCards;
 
 const LeaferboardCard = ({ user }: { user: GetLeaferboardResponse }) => {
+    const navigate = useNavigate();
+
     return (
-        <section className="flex items-center justify-between border border-border rounded-full p-4">
+        <section
+            className="flex items-center justify-between border border-border rounded-full p-4 cursor-pointer hover:border-2"
+            onClick={() => {
+                navigate(`/u/${user.nameSlug}`);
+            }}
+        >
             <div className="flex items-center gap-1 text-xs font-bold">
                 <p className="mr-3">
                     🚀

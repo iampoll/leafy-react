@@ -1,7 +1,9 @@
 import { Badge } from "@/components/ui/badge";
 import { useLeaferboard } from "../contexts/use-leaferboard";
+import { useNavigate } from "react-router-dom";
 
 const TopLeafers = () => {
+    const navigate = useNavigate();
     const { leaferboard, isLoading } = useLeaferboard();
 
     if (isLoading) return <div>Loading top leafers...</div>;
@@ -17,9 +19,12 @@ const TopLeafers = () => {
         <div className="flex items-center justify-between gap-2 py-4 mb-4">
             {topLeafers.map((leafer) => (
                 <section
-                    className={`relative flex flex-col items-center justify-between gap-4 ${
+                    className={`relative flex flex-col items-center justify-between gap-4 cursor-pointer ${
                         leafer.rank === 1 ? "-mt-12" : ""
                     }`}
+                    onClick={() => {
+                        navigate(`/u/${leafer.nameSlug}`);
+                    }}
                 >
                     <Badge className="rounded-full h-2 w-2 p-3 text-xs flex justify-center items-center absolute top-[80px]">
                         {leafer.rank}
