@@ -26,6 +26,7 @@ const ProfilePage = () => {
             <section className="flex flex-col justify-center items-center gap-4">
                 <div className="relative font-bold rounded-full bg-muted h-32 w-32 flex justify-center items-center">
                     {firstLetter}
+
                     <BorderBeam
                         size={128}
                         duration={8}
@@ -62,17 +63,17 @@ export default ProfilePage;
 const RankImage = ({ level }: { level: number }) => {
     let image;
 
-    switch (level) {
-        case 1:
-            image = rankAstralite;
-            break;
-        case 2:
-            image = rankStellarion;
-            break;
-        default:
-            image = rankNebulaflare;
-            break;
+    if (level == 2) {
+        image = rankAstralite;
+    } else if (level == 3 || level == 4) {
+        image = rankStellarion;
+    } else if (level > 4) {
+        image = rankNebulaflare;
+    } else {
+        image = "";
     }
+
+    if (!image) return null;
 
     return <img src={image} alt="rank" className="w-16 h-16 -mt-4" />;
 };

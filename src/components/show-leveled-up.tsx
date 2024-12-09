@@ -37,16 +37,12 @@ const ShowLeveledUp = () => {
 
     let finalImage;
 
-    switch (levelData.currentLevel) {
-        case 1:
-            finalImage = image;
-            break;
-        case 2:
-            finalImage = image2;
-            break;
-        default:
-            finalImage = image3;
-            break;
+    if (levelData.currentLevel == 2) {
+        finalImage = image;
+    } else if (levelData.currentLevel == 3 || levelData.currentLevel == 4) {
+        finalImage = image2;
+    } else {
+        finalImage = image3;
     }
 
     return (
