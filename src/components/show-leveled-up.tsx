@@ -14,8 +14,9 @@ const ShowLeveledUp = () => {
                 <BlurFade delay={0.25}>
                     <div className="text-center">
                         <H1 className="mb-4 ">
-                            Level {levelData.currentLevel.toString()}
+                            Level {levelData.currentLevel}
                         </H1>
+
                         {/* <p className="text-sm mb-4">
                         You have earned {levelData.currentLevel * 100}+ points!
                     </p> */}
