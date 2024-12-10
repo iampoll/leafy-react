@@ -21,3 +21,5 @@ export const emojisWithBackground = [
     { emoji: "🍃", backgroundColor: "bg-red-200" },
     { emoji: "💰", backgroundColor: "bg-green-200" },
 ];
+
+export const endpoints = {};

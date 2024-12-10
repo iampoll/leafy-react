@@ -12,7 +12,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                 </BlurFade>
             )}
 
-            {!isLoggedIn && <div className="h-12"></div>}
+            {!isLoggedIn && <div className="h-4"></div>}
 
             <BlurFade delay={0.25} inView>
                 {children}

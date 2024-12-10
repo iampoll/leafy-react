@@ -13,7 +13,7 @@ const LeaferboardLayout = ({ children }: { children: React.ReactNode }) => {
                 </BlurFade>
             )}
 
-            {!isLoggedIn && <div className="h-12"></div>}
+            {!isLoggedIn && <div className="h-2"></div>}
 
             <LeaferboardProvider>{children}</LeaferboardProvider>
         </div>
