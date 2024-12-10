@@ -1,9 +1,9 @@
 import { format } from "date-fns";
 import { Transaction } from "./types";
 import { Leaf, EllipsisVertical } from "lucide-react";
-import { emojisWithBackground } from "@/config";
 import { ActionsDropdown } from "./actions-dropdown";
 import { Button } from "@/components/ui/button";
+import { emojisWithBackground } from "@/config";
 
 type TransactionCardProps = {
     transaction: Transaction;

@@ -6,8 +6,8 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useGetCategories } from "../../api/use-get-categories";
-import { emojisWithBackground } from "@/config";
 import { Category } from "../../types";
+import { emojisWithBackground } from "@/config";
 
 export function ExpenseCategorySelect({
     category,
